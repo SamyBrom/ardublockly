@@ -53,10 +53,12 @@ Ardublockly.bindDesignEventListeners = function() {
   document.getElementById('xml_collapsible_header').addEventListener(
       'click', Ardublockly.buttonLoadXmlCodeDisplay);
   // Toggle the content height on click to the IDE output collapsible header
-  document.getElementById('ide_output_collapsible_header').addEventListener(
-      'click', function() {
+  if (document.getElementById('ide_output_collapsible_header')) {
+    document.getElementById('ide_output_collapsible_header').addEventListener(
+      'click', function () {
         Ardublockly.contentHeightToggle();
       });
+  }
   // Display/hide the additional IDE buttons when mouse over/out of play button
   $('#button_ide_large').mouseenter(function() {
       Ardublockly.showExtraIdeButtons(true);

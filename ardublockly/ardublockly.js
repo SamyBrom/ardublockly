@@ -174,8 +174,8 @@ Ardublockly.initialiseIdeButtons = function() {
       Ardublockly.getLocalStr('openSketch');
   document.getElementById('button_ide_middle').title =
       Ardublockly.getLocalStr('verifySketch');
-  document.getElementById('button_ide_large').title =
-      Ardublockly.getLocalStr('uploadSketch');
+  // document.getElementById('button_ide_large').title =
+  //     Ardublockly.getLocalStr('uploadSketch');
   ArdublocklyServer.requestIdeOptions(function(jsonObj) {
     if (jsonObj != null) {
       Ardublockly.changeIdeButtons(jsonObj.selected);
@@ -758,6 +758,8 @@ Ardublockly.bindClick_ = function(el, func) {
     e.preventDefault();
     func();
   };
-  el.addEventListener('ontouchend', propagateOnce);
-  el.addEventListener('click', propagateOnce);
+  if (el) {
+    el.addEventListener('ontouchend', propagateOnce);
+    el.addEventListener('click', propagateOnce);
+  }
 };

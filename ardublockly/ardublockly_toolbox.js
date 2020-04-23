@@ -12,6 +12,13 @@ var Ardublockly = Ardublockly || {};
 Ardublockly.TOOLBOX_XML =
 '<xml>' +
 '  <sep></sep>' +
+'  <category id="catAff" name="AFF IoT">' +
+'    <block type="initialise_wifi"></block>' +
+'    <block type="send_wifi"></block>' +
+'    <block type="read_temp"></block>' +
+'    <block type="read_light"></block>' +
+'    <block type="command_recieved"></block>' +
+'  </category>' +
 '  <category id="catLogic" name="Logic">' +
 '    <block type="controls_if"></block>' +
 '    <block type="logic_compare"></block>' +
