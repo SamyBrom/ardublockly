@@ -18,7 +18,17 @@ Ardublockly.TOOLBOX_XML =
 '    <block type="read_temp"></block>' +
 '    <block type="read_light"></block>' +
 '    <block type="command_recieved"></block>' +
+'    <block type="dc_motor"></block>' +
+'    <block type="fan"></block>' +
+'    <block type="servo">' +
+'      <value name="SERVO_ANGLE">' +
+'        <block type="math_number">' +
+'          <field name="NUM">90</field>' +
+'        </block>' +
+'      </value>' +
+'    </block>' +
 '  </category>' +
+'  <sep></sep>' +
 '  <category id="catLogic" name="Logic">' +
 '    <block type="controls_if"></block>' +
 '    <block type="logic_compare"></block>' +
