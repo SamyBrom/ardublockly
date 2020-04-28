@@ -147,7 +147,7 @@ Blockly.Blocks['dc_motor'] = {
                 20,
                 20,
                 "*"))
-            .appendField("DC Motor")
+            .appendField("set DC Motor")
             .appendField("Pin")
             .appendField(new Blockly.FieldDropdown(
                 affDigitalPins), 'PIN')
@@ -191,7 +191,7 @@ Blockly.Blocks['fan'] = {
                 20,
                 20,
                 "*"))
-            .appendField("Fan")
+            .appendField("set Fan")
             .appendField("Pin")
             .appendField(new Blockly.FieldDropdown(
                 affDigitalPins), 'PIN')
@@ -226,14 +226,14 @@ Blockly.Blocks['servo'] = {
      */
     init: function () {
         this.setHelpUrl('http://arduino.cc/en/Reference/ServoWrite');
-        this.setColour(60);
+        this.setColour(Blockly.Blocks.aff.HUE);
         this.appendDummyInput()
-            .appendField(Blockly.Msg.ARD_SERVO_WRITE)
             .appendField(new Blockly.FieldImage(
                 "/img/blockly/servo.png",
                 20,
                 20,
                 "*"))
+            .appendField('set Servo Motor')
             .appendField(new Blockly.FieldDropdown(
                 Blockly.Arduino.Boards.selected.digitalPins), 'SERVO_PIN');
         this.setInputsInline(false);

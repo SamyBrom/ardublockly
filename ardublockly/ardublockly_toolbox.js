@@ -15,9 +15,9 @@ Ardublockly.TOOLBOX_XML =
 '  <category id="catAff" name="AFF IoT">' +
 '    <block type="initialise_wifi"></block>' +
 '    <block type="send_wifi"></block>' +
+'    <block type="command_recieved"></block>' +
 '    <block type="read_temp"></block>' +
 '    <block type="read_light"></block>' +
-'    <block type="command_recieved"></block>' +
 '    <block type="dc_motor"></block>' +
 '    <block type="fan"></block>' +
 '    <block type="servo">' +
@@ -268,9 +268,9 @@ Ardublockly.TOOLBOX_XML_STARTER =
     '  <category id="catAff" name="AFF IoT">' +
     '    <block type="initialise_wifi"></block>' +
     '    <block type="send_wifi"></block>' +
+    '    <block type="command_recieved"></block>' +
     '    <block type="read_temp"></block>' +
     '    <block type="read_light"></block>' +
-    '    <block type="command_recieved"></block>' +
     '    <block type="dc_motor"></block>' +
     '    <block type="fan"></block>' +
     '    <block type="servo">' +

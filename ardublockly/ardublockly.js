@@ -45,8 +45,93 @@ function copyToClipboard(containerid) {
     range.selectNode(document.getElementById(containerid));
     window.getSelection().addRange(range);
     document.execCommand("copy");
-    // alert("Text has been copied, now paste in the text-area")
   }
+}
+
+function saveOnline() {
+    console.log('meteor token')
+    console.log(window.localStorage.getItem('Meteor.loginToken'))
+    if (!window.localStorage.getItem('Meteor.loginToken')) {
+      Ardublockly.alertMessage('You need to be logged in to use the online save feature')
+      return;
+    }
+    $.ajax({
+      url: '/api/code-blocks/save',
+      type: 'post',
+      data: JSON.stringify({
+        title: document.getElementById('sketch_name').value,
+        xml: Ardublockly.generateXml()
+      }),
+      headers: {
+        token: window.localStorage.getItem('Meteor.loginToken'),
+      },
+      contentType: 'application/json',
+      success: function (data) {
+        console.info(data);
+        $('.button-collapse').sideNav('hide');
+        Ardublockly.alertMessage('Saved ' + document.getElementById('sketch_name').value + ' successfully')
+      }
+    });
+}
+
+function loadOnline() {
+  if (!window.localStorage.getItem('Meteor.loginToken')) {
+    Ardublockly.alertMessage('You need to be logged in to use the online load feature')
+    return;
+  }
+  $.ajax({
+    url: '/api/code-blocks',
+    type: 'get',
+    headers: {
+      token: window.localStorage.getItem('Meteor.loginToken'),
+    },
+    contentType: 'application/json',
+    success: function (data) {
+      console.info(data);
+      $('#load-items').html('');
+      if (data.length == 0) {
+        $('#load-items').append('<a class="collection-item">You don\'t have any items saved yet</a>')
+        return;
+      }
+      data.forEach(loadable => {
+        $('#load-items').append('<div style="position: relative"><a href="#!" id="loadable_' + loadable._id + '" class="collection-item">' + loadable.title + '</a><a class="delete-icon" id="loadable_delete_' + loadable._id +'" href="#!"><span class="material-icons">delete</span></a></div>')
+        $('#loadable_' + loadable._id).unbind('click').click(function (element) {
+          var success = Ardublockly.replaceBlocksfromXml(loadable.xml);
+          if (success) {
+            Ardublockly.renderContent();
+            Ardublockly.sketchNameSet(loadable.title);
+            $('#load_dialog').closeModal();
+          } else {
+            Ardublockly.alertMessage(
+              Ardublockly.getLocalStr('invalidXmlTitle'),
+              Ardublockly.getLocalStr('invalidXmlBody'),
+              false);
+          }
+        })
+        $('#loadable_delete_' + loadable._id).unbind('click').click(function (element) {
+          console.log('clicked delete')
+          Ardublockly.alertMessage('Are you sure you want to delete this file?',loadable.title,true,function(){
+            console.log('in delete callback')
+            $.ajax({
+              url: '/api/code-blocks/delete/'+loadable._id,
+              type: 'get',
+              headers: {
+                token: window.localStorage.getItem('Meteor.loginToken'),
+              },
+              contentType: 'application/json',
+              success: function (data) {
+                console.log('after delete')
+                console.log(data)
+                loadOnline();
+              }
+            })
+          })
+        })
+      });
+    }
+  });
+  Ardublockly.openLoadModal();
+  $('.button-collapse').sideNav('hide');
 }
 
 /** Binds functions to each of the buttons, nav links, and related. */
@@ -58,6 +143,8 @@ Ardublockly.bindActionFunctions = function() {
   Ardublockly.bindClick_('menu_save_ino', Ardublockly.saveInoFile);
   Ardublockly.bindClick_('button_delete', Ardublockly.discardAllBlocks);
   Ardublockly.bindClick_('button_inline', Ardublockly.inline);
+  Ardublockly.bindClick_('menu_save_online', saveOnline);
+  Ardublockly.bindClick_('button_save_online', saveOnline);
 
   // Side menu buttons, they also close the side menu
   Ardublockly.bindClick_('menu_load', function() {
@@ -76,10 +163,8 @@ Ardublockly.bindActionFunctions = function() {
     Ardublockly.openSettings();
     $('.button-collapse').sideNav('hide');
   });
-  Ardublockly.bindClick_('menu_load_online', function() {
-    Ardublockly.openLoadModal();
-    $('.button-collapse').sideNav('hide');
-  });
+  Ardublockly.bindClick_('menu_load_online', loadOnline);
+  Ardublockly.bindClick_('button_load_online', loadOnline);
   Ardublockly.bindClick_('menu_example_1', function() {
     Ardublockly.loadServerXmlFile('../examples/blink.xml');
     $('.button-collapse').sideNav('hide');

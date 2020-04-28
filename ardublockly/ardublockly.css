@@ -839,3 +839,14 @@ ul.side-nav li ul li ul li {
   width: 100% !important;
   background-color: white !important;
 }
+
+.delete-icon:hover {
+  color: #033ee5;
+}
+.delete-icon {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}
+
+/* .load_dialog */
