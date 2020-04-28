@@ -8,7 +8,7 @@
 
 /** Create a namespace for the application. */
 var Ardublockly = Ardublockly || {};
-
+Ardublockly.inlineBool = true;
 /**
  * Blockly main workspace.
  * @type Blockly.WorkspaceSvg
@@ -61,8 +61,13 @@ Ardublockly.injectBlockly = function(blocklyEl, toolboxXml, blocklyPath) {
   Ardublockly.loadSessionStorageBlocks();
 };
 
+
+
 /** Binds the event listeners relevant to Blockly. */
 Ardublockly.bindBlocklyEventListeners = function() {
+  var newBlock =Ardublockly.workspace.newBlock("arduino_functions")
+  newBlock.initSvg();
+  newBlock.render();
   Ardublockly.workspace.addChangeListener(function(event) {
     if (event.type != Blockly.Events.UI) {
       Ardublockly.renderContent();
@@ -82,6 +87,61 @@ Ardublockly.generateArduino = function() {
 Ardublockly.generateXml = function() {
   var xmlDom = Blockly.Xml.workspaceToDom(Ardublockly.workspace);
   return Blockly.Xml.domToPrettyText(xmlDom);
+};
+
+/**
+ * Toggle blocks rendering : inline or block
+ */
+Ardublockly.inline = function () {
+  console.log('toggling inline')
+  var xmlBlocks = Blockly.Xml.workspaceToDom(Ardublockly.workspace);
+
+  var blocks = xmlBlocks.getElementsByTagName("block");
+  console.log(Ardublockly.inlineBool)
+  Ardublockly.inlineBool = !Ardublockly.inlineBool;
+
+  for (var i = 0; i < blocks.length; i++) {
+    blocks.item(i).setAttribute("inline", Ardublockly.inlineBool);
+  }
+
+  Ardublockly.workspace.clear();
+  // Ardublockly.loadBlocks(Blockly.Xml.domToPrettyText(xmlBlocks));
+  Ardublockly.replaceBlocksfromXml(Blockly.Xml.domToPrettyText(xmlBlocks))
+
+  if (Ardublockly.inlineBool) {
+    $('#inline-icon').html('more_vert');
+  } else {
+    $('#inline-icon').html('more_horiz');
+  }
+};
+
+Ardublockly.screenshot = function () {
+  var ws = Ardublockly.workspace.svgBlockCanvas_.cloneNode(true);
+  ws.removeAttribute("width");
+  ws.removeAttribute("height");
+  ws.removeAttribute("transform");
+  var styleElem = document.createElementNS("http://www.w3.org/2000/svg", "style");
+  styleElem.textContent = Blockly.Css.CONTENT.join('');
+  ws.insertBefore(styleElem, ws.firstChild);
+  var bbox = Ardublockly.workspace.svgBlockCanvas_.getBBox();
+  var canvas = document.createElement("canvas");
+  canvas.width = Math.ceil(bbox.width + 10);
+  canvas.height = Math.ceil(bbox.height + 10);
+  var ctx = canvas.getContext("2d");
+  var xml = new XMLSerializer().serializeToString(ws);
+  xml = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="' + bbox.width + '" height="' + bbox.height + '" viewBox="' + bbox.x + ' ' + bbox.y + ' ' + bbox.width + ' ' + bbox.height + '"><rect width="100%" height="100%" fill="white"></rect>' + xml + '</svg>';
+  var img = new Image();
+  img.setAttribute("src", 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(xml))));
+  img.onload = function () {
+    ctx.drawImage(img, 5, 5);
+    var canvasdata = canvas.toDataURL("image/png", 1);
+    var datenow = Date.now();
+    var a = document.createElement("a");
+    a.download = "capture" + datenow + ".png";
+    a.href = canvasdata;
+    document.body.appendChild(a);
+    a.click();
+  }
 };
 
 /**

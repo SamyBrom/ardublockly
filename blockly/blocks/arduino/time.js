@@ -39,6 +39,26 @@ Blockly.Blocks['time_delay'] = {
   }
 };
 
+Blockly.Blocks['time_delay_seconds'] = {
+  /**
+   * Delay block definition
+   * @this Blockly.Block
+   */
+  init: function () {
+    this.setHelpUrl('http://arduino.cc/en/Reference/Delay');
+    this.setColour(Blockly.Blocks.time.HUE);
+    this.appendValueInput('DELAY_TIME_MILI')
+      .setCheck(Blockly.Types.NUMBER.checkList)
+      .appendField(Blockly.Msg.ARD_TIME_DELAY);
+    this.appendDummyInput()
+      .appendField(Blockly.Msg.ARD_TIME_MS);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip(Blockly.Msg.ARD_TIME_DELAY_TIP);
+  }
+};
+
 Blockly.Blocks['time_delaymicros'] = {
   /**
    * delayMicroseconds block definition
@@ -113,5 +133,27 @@ Blockly.Blocks['infinite_loop'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setTooltip(Blockly.Msg.ARD_TIME_INF_TIP);
+  }
+};
+
+Blockly.Blocks['when_elapsed'] = {
+  init: function () {
+    this.appendValueInput("DELAY_TIME")
+      .setCheck("Number")
+      .appendField('when');
+    this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+        ['microseconds','us'],
+        ['millisecons','ms'],
+        ['seconds','s'],
+      ]), "unite")
+      .appendField('elapsed');
+    this.appendStatementInput("branche");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Blocks.time.HUE);
+    this.setTooltip('');
+    this.setHelpUrl('');
   }
 };

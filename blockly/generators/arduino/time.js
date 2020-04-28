@@ -28,6 +28,20 @@ goog.require('Blockly.Arduino');
 };
 
 /**
+ * Code generator for the delay Arduino block.
+ * Arduino code: loop { delay(X); }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['time_delay_seconds'] = function (block) {
+  var delayTime = Blockly.Arduino.valueToCode(
+    block, 'DELAY_TIME_MILI', Blockly.Arduino.ORDER_ATOMIC) || '0';
+  delayTime = delayTime * 1000;
+  var code = 'delay(' + delayTime + ');\n';
+  return code;
+};
+
+/**
  * Code generator for the delayMicroseconds block.
  * Arduino code: loop { delayMicroseconds(X); }
  * @param {!Blockly.Block} block Block to generate the code from.
@@ -70,4 +84,24 @@ goog.require('Blockly.Arduino');
  */
  Blockly.Arduino['infinite_loop'] = function(block) {
   return 'while(true);\n';
+};
+
+Blockly.Arduino['when_elapsed'] = function (block) {
+  var _u = block.getFieldValue("unite");
+  var delay_time = Blockly.Arduino.valueToCode(block, "DELAY_TIME", Blockly.Arduino.ORDER_ATOMIC);
+  var faire = Blockly.Arduino.statementToCode(block, "branche");
+  var temps = "temps" + delay_time;
+  Blockly.Arduino.definitions_["temporisation" + delay_time] = "long " + temps + " = 0 ;";
+  switch (_u) {
+    case "us":
+      var code = "if ((micros()-" + temps + ")>=" + delay_time + ") {\n  " + temps + "=micros();\n" + faire + "}\n";
+      break;
+    case "ms":
+      var code = "if ((millis()-" + temps + ")>=" + delay_time + ") {\n  " + temps + "=millis();\n" + faire + "}\n";
+      break;
+    case "s":
+      code = "if ((millis()-" + temps + ")>=" + delay_time + "*1000) {\n  " + temps + "=millis();\n" + faire + "}\n";
+      break
+  };
+  return code
 };

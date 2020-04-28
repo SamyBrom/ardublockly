@@ -145,6 +145,8 @@ ArduinoSettings.setIdeHtml = function(jsonResponse) {
 ArduinoSettings.setIdeSettings = function() {
   var el = document.getElementById('ide_settings');
   var ideValue = el.options[el.selectedIndex].value;
+  console.log('setting ide value')
+  console.log(ideValue)
   //TODO: check how ArdublocklyServer deals with invalid data and sanitise
   ArdublocklyServer.setIdeOptions(ideValue, ArduinoSettings.setIdeHtml);
 };

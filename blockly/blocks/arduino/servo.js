@@ -12,7 +12,7 @@
  */
 'use strict';
 
-goog.provide('Blockly.Blocks.servo');
+// goog.provide('Blockly.Blocks.servo');
 
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Types');

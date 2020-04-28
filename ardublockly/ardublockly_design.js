@@ -78,8 +78,10 @@ Ardublockly.buttonLoadXmlCodeDisplay = function() {
   setTimeout(function() {
     if (xmlCollapsibleBody.style.display == 'none') {
       $('#button_load_xml').hide();
+      // $('#button_copy_code').fadeIn('slow');
     } else {
       $('#button_load_xml').fadeIn('slow');
+      // $('#button_copy_code').hide();
     }
   }, 400);
 };
@@ -319,6 +321,16 @@ Ardublockly.openSettingsModal = function() {
     out_duration: 250
   });
 };
+
+Ardublockly.openLoadModal = function () {
+  $('#load_dialog').openModal({
+    dismissible: true,
+    opacity: .5,
+    in_duration: 200,
+    out_duration: 250
+  });
+};
+
 
 /**
  * Opens the modal that allows selection on additional toolbox categories.

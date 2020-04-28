@@ -368,6 +368,12 @@ ul.side-nav li.side-menu-end {
   bottom: 36px;
   display: none;
 }
+#button_copy_code {
+  position: absolute;
+  right: 36px;
+  bottom: 36px;
+  display: block;
+}
 #button_load_xml .mdi-action-extension {
   font-size: 2.1rem !important;
 }
