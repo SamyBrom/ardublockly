@@ -32,6 +32,7 @@ Blockly.Blocks['arduino_functions'] = {
     this.setColour(Blockly.Blocks.procedures.HUE);
     this.setTooltip(Blockly.Msg.ARD_FUN_RUN_TIP);
     this.setHelpUrl('https://arduino.cc/en/Reference/Loop');
+    this.setDeletable(false);
     this.contextMenu = false;
   },
   /** @return {!boolean} True if the block instance is in the workspace. */

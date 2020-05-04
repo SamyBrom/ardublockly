@@ -18,8 +18,20 @@ Ardublockly.TOOLBOX_XML =
 '    <block type="command_recieved"></block>' +
 '    <block type="read_temp"></block>' +
 '    <block type="read_light"></block>' +
-'    <block type="dc_motor"></block>' +
-'    <block type="fan"></block>' +
+'    <block type="dc_motor">' +
+'      <value name="SPEED">' +
+'        <block type="math_number">' +
+'          <field name="NUM">100</field>' +
+'        </block>' +
+'      </value>' +
+'    </block>' +
+'    <block type="fan">' +
+'      <value name="SPEED">' +
+'        <block type="math_number">' +
+'          <field name="NUM">100</field>' +
+'        </block>' +
+'      </value>' +
+'    </block>' +
 '    <block type="servo">' +
 '      <value name="SERVO_ANGLE">' +
 '        <block type="math_number">' +
@@ -127,8 +139,26 @@ Ardublockly.TOOLBOX_XML =
 '  </category>' +
 '  <sep></sep>' +
 '  <category id="catVariables" name="Variables">' +
+'    <block type="variables_set">' +
+'        <value name="VALUE">' +
+'            <shadow type="math_number">' +
+'                <field name="NUM">0</field>' +
+'            </shadow>' +
+'        </value>' +
+'    </block>' +
 '    <block type="variables_get"></block>' +
-'    <block type="variables_set"></block>' +
+'    <block type="variables_set_text">' +
+'      <value name="VALUE">' +
+'        <block type="text"></block>' +
+'      </value>' +
+'    </block>' +
+'    <block type="variables_get_text"></block>' +
+'    <block type="variables_set_bool">' +
+'        <value name="VALUE">' +
+'            <shadow type="logic_boolean2"></shadow>' +
+'        </value>' +
+'    </block>' +
+'    <block type="variables_get_bool"></block>' +
 '    <block type="variables_set">' +
 '      <value name="VALUE">' +
 '        <block type="variables_set_type"></block>' +
@@ -175,7 +205,7 @@ Ardublockly.TOOLBOX_XML =
 '    <block type="time_delay_seconds">' +
 '      <value name="DELAY_TIME_MILI">' +
 '        <block type="math_number">' +
-'          <field name="NUM">5</field>' +
+'          <field name="NUM">1</field>' +
 '        </block>' +
 '      </value>' +
 '    </block>' +
@@ -196,7 +226,7 @@ Ardublockly.TOOLBOX_XML =
 '    <block type="when_elapsed">' +
 '      <value name="DELAY_TIME">' +
 '        <block type="math_number">' +
-'          <field name="NUM">100</field>' +
+'          <field name="NUM">1</field>' +
 '        </block>' +
 '      </value>' +
 '    </block>' +
@@ -271,8 +301,20 @@ Ardublockly.TOOLBOX_XML_STARTER =
     '    <block type="command_recieved"></block>' +
     '    <block type="read_temp"></block>' +
     '    <block type="read_light"></block>' +
-    '    <block type="dc_motor"></block>' +
-    '    <block type="fan"></block>' +
+    '    <block type="dc_motor">'+
+    '      <value name="SPEED">' +
+    '        <block type="math_number">' +
+    '          <field name="NUM">100</field>' +
+    '        </block>' +
+    '      </value>' +
+    '    </block>' +
+    '    <block type="fan">' +
+    '      <value name="SPEED">' +
+    '        <block type="math_number">' +
+    '          <field name="NUM">100</field>' +
+    '        </block>' +
+    '      </value>' +
+    '    </block>' +
     '    <block type="servo">' +
     '      <value name="SERVO_ANGLE">' +
     '        <block type="math_number">' +
@@ -285,35 +327,6 @@ Ardublockly.TOOLBOX_XML_STARTER =
     '  <category id="catLogic" name="Logic">' +
     '    <block type="controls_if"></block>' +
     '    <block type="logic_compare"></block>' +
-    '  </category>' +
-    '  <sep></sep>' +
-    '  <category id="catLoops" name="Loops">' +
-    '    <block type="controls_repeat_ext">' +
-    '      <value name="TIMES">' +
-    '        <block type="math_number">' +
-    '          <field name="NUM">10</field>' +
-    '        </block>' +
-    '      </value>' +
-    '    </block>' +
-    '    <block type="controls_whileUntil"></block>' +
-    '    <block type="controls_for">' +
-    '      <value name="FROM">' +
-    '        <block type="math_number">' +
-    '          <field name="NUM">1</field>' +
-    '        </block>' +
-    '      </value>' +
-    '      <value name="TO">' +
-    '        <block type="math_number">' +
-    '          <field name="NUM">10</field>' +
-    '        </block>' +
-    '      </value>' +
-    '      <value name="BY">' +
-    '        <block type="math_number">' +
-    '          <field name="NUM">1</field>' +
-    '        </block>' +
-    '      </value>' +
-    '    </block>' +
-    '    <block type="controls_flow_statements"></block>' +
     '  </category>' +
     '  <sep></sep>' +
     '  <category id="catMath" name="Math">' +
@@ -336,14 +349,32 @@ Ardublockly.TOOLBOX_XML_STARTER =
     '  </category>' +
     '  <sep></sep>' +
     '  <category id="catVariables" name="Variables">' +
-    '    <block type="variables_get"></block>' +
-    '    <block type="variables_set"></block>' +
     '    <block type="variables_set">' +
+    '        <value name="VALUE">' +
+    '            <shadow type="math_number">' +
+    '                <field name="NUM">0</field>' +
+    '            </shadow>' +
+    '        </value>' +
+    '    </block>' +
+    '    <block type="variables_get"></block>' +
+    '    <block type="variables_set_text">' +
     '      <value name="VALUE">' +
-    '        <block type="variables_set_type"></block>' +
+    '        <block type="text"></block>' +
     '      </value>' +
     '    </block>' +
-    '    <block type="variables_set_type"></block>' +
+    '    <block type="variables_get_text"></block>' +
+    '    <block type="variables_set_bool">' +
+    '        <value name="VALUE">' +
+    '            <shadow type="logic_boolean2"></shadow>' +
+    '        </value>' +
+    '    </block>' +
+    '    <block type="variables_get_bool"></block>' +
+    // '    <block type="variables_set">' +
+    // '      <value name="VALUE">' +
+    // '        <block type="variables_set_type"></block>' +
+    // '      </value>' +
+    // '    </block>' +
+    // '    <block type="variables_set_type"></block>' +
     '  </category>' +
     '  <sep></sep>' +
     // '  <category web-class="moderate" id="catFunctions" name="Functions" custom="PROCEDURE"></category>' +
@@ -363,28 +394,13 @@ Ardublockly.TOOLBOX_XML_STARTER =
     '    <block type="io_analogwrite"></block>' +
     '    <block type="io_analogread"></block>' +
     '    <block type="io_highlow"></block>' +
-    '    <block type="io_pulsein">' +
-    '      <value name="PULSETYPE">' +
-    '        <shadow type="io_highlow"></shadow>' +
-    '      </value>' +
-    '    </block>' +
-    '    <block type="io_pulsetimeout">' +
-    '      <value name="PULSETYPE">' +
-    '        <shadow type="io_highlow"></shadow>' +
-    '      </value>' +
-    '      <value name="TIMEOUT">' +
-    '        <shadow type="math_number">' +
-    '          <field name="NUM">100</field>' +
-    '        </shadow>' +
-    '      </value>' +
-    '    </block>' +
     '  </category>' +
     '  <sep></sep>' +
     '  <category id="catTime" name="Time">' +
     '    <block type="time_delay_seconds">' +
     '      <value name="DELAY_TIME_MILI">' +
     '        <block type="math_number">' +
-    '          <field name="NUM">5</field>' +
+    '          <field name="NUM">1</field>' +
     '        </block>' +
     '      </value>' +
     '    </block>' +
@@ -405,7 +421,7 @@ Ardublockly.TOOLBOX_XML_STARTER =
     '    <block type="when_elapsed">' +
     '      <value name="DELAY_TIME">' +
     '        <block type="math_number">' +
-    '          <field name="NUM">100</field>' +
+    '          <field name="NUM">1</field>' +
     '        </block>' +
     '      </value>' +
     '    </block>' +

@@ -63,7 +63,8 @@ Blockly.Arduino['io_digitalread'] = function(block) {
  * @return {string} Completed code.
  */
 Blockly.Arduino['io_builtin_led'] = function(block) {
-  var pin = block.getFieldValue('BUILT_IN_LED');
+  // var pin = block.getFieldValue('BUILT_IN_LED');
+  var pin = 13;
   var stateOutput = Blockly.Arduino.valueToCode(
       block, 'STATE', Blockly.Arduino.ORDER_ATOMIC) || 'LOW';
 

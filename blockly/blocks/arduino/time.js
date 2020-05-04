@@ -51,7 +51,7 @@ Blockly.Blocks['time_delay_seconds'] = {
       .setCheck(Blockly.Types.NUMBER.checkList)
       .appendField(Blockly.Msg.ARD_TIME_DELAY);
     this.appendDummyInput()
-      .appendField(Blockly.Msg.ARD_TIME_MS);
+      .appendField("seconds");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -143,9 +143,9 @@ Blockly.Blocks['when_elapsed'] = {
       .appendField('when');
     this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
-        ['microseconds','us'],
-        ['millisecons','ms'],
         ['seconds','s'],
+        ['millisecons', 'ms'],
+        ['microseconds', 'us'],
       ]), "unite")
       .appendField('elapsed');
     this.appendStatementInput("branche");

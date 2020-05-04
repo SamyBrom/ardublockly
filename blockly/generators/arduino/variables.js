@@ -13,33 +13,28 @@ goog.provide('Blockly.Arduino.variables');
 goog.require('Blockly.Arduino');
 
 
-/**
- * Code generator for variable (X) getter.
- * Arduino code: loop { X }
- * @param {Blockly.Block} block Block to generate the code from.
- * @return {array} Completed code with order of operation.
- */
-Blockly.Arduino['variables_get'] = function(block) {
-  var code = Blockly.Arduino.variableDB_.getName(block.getFieldValue('VAR'),
-      Blockly.Variables.NAME_TYPE);
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+Blockly.Arduino.variables = {};
+Blockly.Arduino.variables_set = function () {
+  var a = Blockly.Arduino.valueToCode(this, "VALUE", Blockly.Arduino.ORDER_ASSIGNMENT) || "0";
+  return Blockly.Arduino.variableDB_.getName(this.getFieldValue("VAR"), Blockly.Variables.NAME_TYPE) + " = " + a + ";\n"
 };
-
-/**
- * Code generator for variable (X) setter (Y).
- * Arduino code: type X;
- *               loop { X = Y; }
- * @param {Blockly.Block} block Block to generate the code from.
- * @return {string} Completed code.
- */
-Blockly.Arduino['variables_set'] = function(block) {
-  var argument0 = Blockly.Arduino.valueToCode(block, 'VALUE',
-      Blockly.Arduino.ORDER_ASSIGNMENT) || '0';
-  var varName = Blockly.Arduino.variableDB_.getName(
-      block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
-  return varName + ' = ' + argument0 + ';\n';
+Blockly.Arduino.variables_get = function () {
+  return [Blockly.Arduino.variableDB_.getName(this.getFieldValue("VAR"), Blockly.Variables.NAME_TYPE), Blockly.Arduino.ORDER_ATOMIC]
 };
-
+Blockly.Arduino.variables_set_text = function () {
+  var a = Blockly.Arduino.valueToCode(this, "VALUE", Blockly.Arduino.ORDER_ASSIGNMENT) || '""';
+  return "s_" + Blockly.Arduino.variableDB_.getName(this.getFieldValue("VARTEXT"), Blockly.Variables.NAME_TYPE) + " = " + a + ";\n"
+};
+Blockly.Arduino.variables_get_text = function () {
+  return ["s_" + Blockly.Arduino.variableDB_.getName(this.getFieldValue("VARTEXT"), Blockly.Variables.NAME_TYPE), Blockly.Arduino.ORDER_ATOMIC]
+};
+Blockly.Arduino.variables_set_bool = function () {
+  var a = Blockly.Arduino.valueToCode(this, "VALUE", Blockly.Arduino.ORDER_ASSIGNMENT) || "false";
+  return "b_" + Blockly.Arduino.variableDB_.getName(this.getFieldValue("VARBOOL"), Blockly.Variables.NAME_TYPE) + " = " + a + ";\n"
+};
+Blockly.Arduino.variables_get_bool = function () {
+  return ["b_" + Blockly.Arduino.variableDB_.getName(this.getFieldValue("VARBOOL"), Blockly.Variables.NAME_TYPE), Blockly.Arduino.ORDER_ATOMIC]
+};
 /**
  * Code generator for variable (X) casting (Y).
  * Arduino code: loop { (Y)X }
@@ -53,4 +48,13 @@ Blockly.Arduino['variables_set_type'] = function(block) {
       Blockly.Types[block.getFieldValue('VARIABLE_SETTYPE_TYPE')]);
   var code = '(' + varType + ')(' + argument0 + ')';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino.variables_set_text = function () {
+  var a = Blockly.Arduino.valueToCode(this, "VALUE", Blockly.Arduino.ORDER_ASSIGNMENT) || '""';
+  return "s_" + Blockly.Arduino.variableDB_.getName(this.getFieldValue("VARTEXT"), Blockly.Variables.NAME_TYPE) + " = " + a + ";\n"
+};
+
+Blockly.Arduino.logic_boolean2 = function () {
+  return ["TRUE" == this.getFieldValue("BOOL") ? "true" : "false", Blockly.Arduino.ORDER_ATOMIC]
 };

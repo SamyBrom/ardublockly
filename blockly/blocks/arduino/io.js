@@ -17,6 +17,51 @@ goog.provide('Blockly.Blocks.io');
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Types');
 
+
+var affAnaloguePins = [
+  ["A2", "A2"],
+  ["A3", "A3"],
+  ["A4", "A4"],
+  ["A5", "A5"],
+  ["A6", "A6"],
+  ["A7", "A7"],
+]
+
+var affDigitalPins = [
+  ["D0", "D0"],
+  ["D1", "D1"],
+  ["D2", "D2"],
+  ["D3", "D3"],
+  ["D4", "D4"],
+  ["D5", "D5"],
+  ["D6", "D6"],
+  ["D7", "D7"],
+  ["D8", "D8"],
+  ["D9", "D9"],
+  ["D10", "D10"],
+  ["D11", "D11"],
+  ["D12", "D12"],
+  ["D13", "D13"],
+]
+
+var affDigitalPinsRarted = [
+  ["D0", "0"],
+  ["D1", "1"],
+  ["D2", "2"],
+  ["D3", "3"],
+  ["D4", "4"],
+  ["D5", "5"],
+  ["D6", "6"],
+  ["D7", "7"],
+  ["D8", "8"],
+  ["D9", "9"],
+  ["D10", "10"],
+  ["D11", "11"],
+  ["D12", "12"],
+  ["D13", "13"],
+]
+
+
 /** Common HSV hue for all blocks in this category. */
 Blockly.Blocks.io.HUE = 250;
 
@@ -31,7 +76,7 @@ Blockly.Blocks['io_digitalwrite'] = {
     this.appendValueInput('STATE')
         .appendField(Blockly.Msg.ARD_DIGITALWRITE)
         .appendField(new Blockly.FieldDropdown(
-            Blockly.Arduino.Boards.selected.digitalPins), 'PIN')
+          affAnaloguePins.concat(affDigitalPins)), 'PIN')
         .appendField(Blockly.Msg.ARD_WRITE_TO)
         .setCheck(Blockly.Types.BOOLEAN.checkList);
     this.setInputsInline(false);
@@ -60,7 +105,7 @@ Blockly.Blocks['io_digitalread'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_DIGITALREAD)
         .appendField(new Blockly.FieldDropdown(
-            Blockly.Arduino.Boards.selected.digitalPins), 'PIN');
+          affAnaloguePins.concat(affDigitalPins)), 'PIN');
     this.setOutput(true, Blockly.Types.BOOLEAN.output);
     this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
   },
@@ -88,8 +133,8 @@ Blockly.Blocks['io_builtin_led'] = {
     this.setColour(Blockly.Blocks.io.HUE);
     this.appendValueInput('STATE')
         .appendField(Blockly.Msg.ARD_BUILTIN_LED)
-        .appendField(new Blockly.FieldDropdown(
-            Blockly.Arduino.Boards.selected.builtinLed), 'BUILT_IN_LED')
+        // .appendField(new Blockly.FieldDropdown(
+        //     Blockly.Arduino.Boards.selected.builtinLed), 'BUILT_IN_LED')
         .appendField(Blockly.Msg.ARD_WRITE_TO)
         .setCheck(Blockly.Types.BOOLEAN.checkList);
     this.setInputsInline(false);
@@ -102,8 +147,8 @@ Blockly.Blocks['io_builtin_led'] = {
    * @this Blockly.Block
    */
   updateFields: function() {
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(
-        this, 'BUILT_IN_LED', 'builtinLed');
+    // Blockly.Arduino.Boards.refreshBlockFieldDropdown(
+    //     this, 'BUILT_IN_LED', 'builtinLed');
   },
   /** @return {!string} The type of input value for the block, an integer. */
   getBlockType: function() {
@@ -122,7 +167,8 @@ Blockly.Blocks['io_analogwrite'] = {
     this.appendValueInput('NUM')
         .appendField(Blockly.Msg.ARD_ANALOGWRITE)
         .appendField(new Blockly.FieldDropdown(
-            Blockly.Arduino.Boards.selected.pwmPins), 'PIN')
+            // Blockly.Arduino.Boards.selected.pwmPins), 'PIN')
+          affDigitalPinsRarted), 'PIN')
         .appendField(Blockly.Msg.ARD_WRITE_TO)
         .setCheck(Blockly.Types.NUMBER.output);
     this.setInputsInline(false);
@@ -154,7 +200,8 @@ Blockly.Blocks['io_analogread'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_ANALOGREAD)
         .appendField(new Blockly.FieldDropdown(
-            Blockly.Arduino.Boards.selected.analogPins), 'PIN');
+            // Blockly.Arduino.Boards.selected.analogPins), 'PIN');
+            affAnaloguePins), 'PIN');
     this.setOutput(true, Blockly.Types.NUMBER.output);
     this.setTooltip(Blockly.Msg.ARD_ANALOGREAD_TIP);
   },

@@ -849,4 +849,8 @@ ul.side-nav li ul li ul li {
   right: 10px;
 }
 
+.blocklyIconGroup {
+  display: none;
+}
+
 /* .load_dialog */

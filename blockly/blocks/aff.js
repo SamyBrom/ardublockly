@@ -55,6 +55,23 @@ var affDigitalPins = [
     ["D13", "D13"],
 ]
 
+var affDigitalPinsRarted = [
+    ["D0", "0"],
+    ["D1", "1"],
+    ["D2", "2"],
+    ["D3", "3"],
+    ["D4", "4"],
+    ["D5", "5"],
+    ["D6", "6"],
+    ["D7", "7"],
+    ["D8", "8"],
+    ["D9", "9"],
+    ["D10", "10"],
+    ["D11", "11"],
+    ["D12", "12"],
+    ["D13", "13"],
+]
+
 var percentages = [
     ["0%","0"],
     ["25%","25"],
@@ -66,7 +83,7 @@ var percentages = [
 /**
  * Common HSV hue for all blocks in this category.
  */
-Blockly.Blocks.aff.HUE = 210;
+Blockly.Blocks.aff.HUE = 82;
 
 Blockly.Blocks['initialise_wifi'] = {
     /**
@@ -75,7 +92,7 @@ Blockly.Blocks['initialise_wifi'] = {
      */
     init: function () {
         this.setHelpUrl('http://arduino.cc/en/Reference/Delay');
-        this.setColour(160);
+        this.setColour(210);
         // this.appendValueInput('DELAY_TIME_MILI')
         //     .setCheck(Blockly.Types.NUMBER.checkList)
         //     .appendField(Blockly.Msg.ARD_TIME_DELAY);
@@ -89,7 +106,7 @@ Blockly.Blocks['initialise_wifi'] = {
         // this.setInputsInline(true);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setTooltip(Blockly.Msg.ARD_TIME_DELAY_TIP);
+        // this.setTooltip(Blockly.Msg.ARD_TIME_DELAY_TIP);
     }
 };
 
@@ -100,7 +117,7 @@ Blockly.Blocks['send_wifi'] = {
      */
     init: function () {
         this.setHelpUrl(Blockly.Msg.TEXT_APPEND_HELPURL);
-        this.setColour(160);
+        this.setColour(210);
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage(
                 "/img/blockly/wifi.png",
@@ -115,10 +132,10 @@ Blockly.Blocks['send_wifi'] = {
         this.setNextStatement(true, null);
         // Assign 'this' to a variable for use in the tooltip closure below.
         var thisBlock = this;
-        this.setTooltip(function () {
-            return Blockly.Msg.TEXT_APPEND_TOOLTIP.replace('%1',
-                thisBlock.getFieldValue('VAR'));
-        });
+        // this.setTooltip(function () {
+        //     return Blockly.Msg.TEXT_APPEND_TOOLTIP.replace('%1',
+        //         thisBlock.getFieldValue('VAR'));
+        // });
     },
     /**
      * Set's the type of the variable selected in the drop down list. As there is
@@ -150,19 +167,25 @@ Blockly.Blocks['dc_motor'] = {
             .appendField("set DC Motor")
             .appendField("Pin")
             .appendField(new Blockly.FieldDropdown(
-                affDigitalPins), 'PIN')
-            .appendField("Speed")
-            .appendField(new Blockly.FieldNumber(100, 0, 100, 10), 'SPEED')
+                affDigitalPinsRarted), 'PIN')
+            .appendField("Speed");
+
+        this.setInputsInline(true);
+        this.appendValueInput('SPEED')
+            .setCheck(Blockly.Types.NUMBER.checkList);
+
+        this.appendDummyInput()
             .appendField("%");
+
         // .appendField(Blockly.Msg.TEXT_APPEND_APPENDTEXT);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         // Assign 'this' to a variable for use in the tooltip closure below.
         var thisBlock = this;
-        this.setTooltip(function () {
-            return Blockly.Msg.TEXT_APPEND_TOOLTIP.replace('%1',
-                thisBlock.getFieldValue('VAR'));
-        });
+        // this.setTooltip(function () {
+        //     return Blockly.Msg.TEXT_APPEND_TOOLTIP.replace('%1',
+        //         thisBlock.getFieldValue('VAR'));
+        // });
     },
     /**
      * Set's the type of the variable selected in the drop down list. As there is
@@ -194,19 +217,27 @@ Blockly.Blocks['fan'] = {
             .appendField("set Fan")
             .appendField("Pin")
             .appendField(new Blockly.FieldDropdown(
-                affDigitalPins), 'PIN')
-            .appendField("Speed")
-            .appendField(new Blockly.FieldNumber(100, 0, 100, 10), 'SPEED')
+                affDigitalPinsRarted), 'PIN')
+            .appendField("Speed");
+        
+        this.setInputsInline(true);
+        this.appendValueInput('SPEED')
+            .setCheck(Blockly.Types.NUMBER.checkList);
+        
+        this.appendDummyInput()
             .appendField("%");
+
+        // this.appendField(new Blockly.FieldNumber(100, 0, 100, 10), 'SPEED')
+        //     .appendField("%");
         // .appendField(Blockly.Msg.TEXT_APPEND_APPENDTEXT);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         // Assign 'this' to a variable for use in the tooltip closure below.
         var thisBlock = this;
-        this.setTooltip(function () {
-            return Blockly.Msg.TEXT_APPEND_TOOLTIP.replace('%1',
-                thisBlock.getFieldValue('VAR'));
-        });
+        // this.setTooltip(function () {
+        //     return Blockly.Msg.TEXT_APPEND_TOOLTIP.replace('%1',
+        //         thisBlock.getFieldValue('VAR'));
+        // });
     },
     /**
      * Set's the type of the variable selected in the drop down list. As there is
@@ -235,7 +266,8 @@ Blockly.Blocks['servo'] = {
                 "*"))
             .appendField('set Servo Motor')
             .appendField(new Blockly.FieldDropdown(
-                Blockly.Arduino.Boards.selected.digitalPins), 'SERVO_PIN');
+                // Blockly.Arduino.Boards.selected.digitalPins), 'SERVO_PIN');
+                affDigitalPinsRarted), 'SERVO_PIN');
         this.setInputsInline(false);
         this.appendValueInput('SERVO_ANGLE')
             .setCheck(Blockly.Types.NUMBER.checkList)
@@ -245,7 +277,7 @@ Blockly.Blocks['servo'] = {
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setTooltip(Blockly.Msg.ARD_SERVO_WRITE_TIP);
+        // this.setTooltip(Blockly.Msg.ARD_SERVO_WRITE_TIP);
     },
     /**
      * Updates the content of the the pin related fields.
@@ -266,7 +298,7 @@ Blockly.Blocks['read_temp'] = {
         console.log('Blockly.Arduino.Boards.selected.digitalPins')
         console.log(Blockly.Arduino.Boards.selected.digitalPins)
         this.setHelpUrl('http://arduino.cc/en/Reference/DigitalRead');
-        this.setColour(Blockly.Blocks.io.HUE);
+        this.setColour(322);
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage(
                 "/img/blockly/temperature.png",
@@ -277,7 +309,7 @@ Blockly.Blocks['read_temp'] = {
             .appendField(new Blockly.FieldDropdown(
                 affAnaloguePins), 'PIN');
         this.setOutput(true, Blockly.Types.BOOLEAN.output);
-        this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
+        // this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
     },
     /** @return {!string} The type of return value for the block, an integer. */
     getBlockType: function () {
@@ -302,7 +334,7 @@ Blockly.Blocks['read_light'] = {
         console.log('Blockly.Arduino.Boards.selected.digitalPins')
         console.log(Blockly.Arduino.Boards.selected.digitalPins)
         this.setHelpUrl('http://arduino.cc/en/Reference/DigitalRead');
-        this.setColour(Blockly.Blocks.io.HUE);
+        this.setColour(322);
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage(
                 "/img/blockly/brightness.png",
@@ -313,7 +345,7 @@ Blockly.Blocks['read_light'] = {
             .appendField(new Blockly.FieldDropdown(
                 affAnaloguePins), 'PIN');
         this.setOutput(true, Blockly.Types.BOOLEAN.output);
-        this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
+        // this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
     },
     /** @return {!string} The type of return value for the block, an integer. */
     getBlockType: function () {
@@ -336,7 +368,7 @@ Blockly.Blocks['command_recieved'] = {
      */
     init: function () {
         this.setHelpUrl(Blockly.Msg.CONTROLS_IF_HELPURL);
-        this.setColour(160);
+        this.setColour(210);
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage(
                 "/img/blockly/wifi.png",
@@ -350,18 +382,18 @@ Blockly.Blocks['command_recieved'] = {
         this.setNextStatement(true);
         // Assign 'this' to a variable for use in the tooltip closure below.
         var thisBlock = this;
-        this.setTooltip(function () {
-            if (!thisBlock.elseifCount_ && !thisBlock.elseCount_) {
-                return Blockly.Msg.CONTROLS_IF_TOOLTIP_1;
-            } else if (!thisBlock.elseifCount_ && thisBlock.elseCount_) {
-                return Blockly.Msg.CONTROLS_IF_TOOLTIP_2;
-            } else if (thisBlock.elseifCount_ && !thisBlock.elseCount_) {
-                return Blockly.Msg.CONTROLS_IF_TOOLTIP_3;
-            } else if (thisBlock.elseifCount_ && thisBlock.elseCount_) {
-                return Blockly.Msg.CONTROLS_IF_TOOLTIP_4;
-            }
-            return '';
-        });
+        // this.setTooltip(function () {
+        //     if (!thisBlock.elseifCount_ && !thisBlock.elseCount_) {
+        //         return Blockly.Msg.CONTROLS_IF_TOOLTIP_1;
+        //     } else if (!thisBlock.elseifCount_ && thisBlock.elseCount_) {
+        //         return Blockly.Msg.CONTROLS_IF_TOOLTIP_2;
+        //     } else if (thisBlock.elseifCount_ && !thisBlock.elseCount_) {
+        //         return Blockly.Msg.CONTROLS_IF_TOOLTIP_3;
+        //     } else if (thisBlock.elseifCount_ && thisBlock.elseCount_) {
+        //         return Blockly.Msg.CONTROLS_IF_TOOLTIP_4;
+        //     }
+        //     return '';
+        // });
         this.elseifCount_ = 0;
         this.elseCount_ = 0;
     },
