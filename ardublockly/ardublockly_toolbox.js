@@ -25,6 +25,20 @@ Ardublockly.TOOLBOX_XML =
 '        </block>' +
 '      </value>' +
 '    </block>' +
+'    <block type="led">' +
+'      <value name="SPEED">' +
+'        <block type="math_number">' +
+'          <field name="NUM">100</field>' +
+'        </block>' +
+'      </value>' +
+'    </block>' +
+'    <block type="buzzer">' +
+'      <value name="SPEED">' +
+'        <block type="math_number">' +
+'          <field name="NUM">100</field>' +
+'        </block>' +
+'      </value>' +
+'    </block>' +
 '    <block type="fan">' +
 '      <value name="SPEED">' +
 '        <block type="math_number">' +
@@ -308,6 +322,20 @@ Ardublockly.TOOLBOX_XML_STARTER =
     '        </block>' +
     '      </value>' +
     '    </block>' +
+    '    <block type="led">'+
+    '      <value name="SPEED">' +
+    '        <block type="math_number">' +
+    '          <field name="NUM">100</field>' +
+    '        </block>' +
+    '      </value>' +
+    '    </block>' +
+    '    <block type="buzzer">' +
+    '      <value name="SPEED">' +
+    '        <block type="math_number">' +
+    '          <field name="NUM">100</field>' +
+    '        </block>' +
+    '      </value>' +
+    '    </block>' +    
     '    <block type="fan">' +
     '      <value name="SPEED">' +
     '        <block type="math_number">' +

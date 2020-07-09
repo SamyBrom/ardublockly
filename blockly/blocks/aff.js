@@ -39,20 +39,34 @@ var affAnaloguePins = [
 ]
 
 var affDigitalPins = [
-    ["D0", "D0"],
-    ["D1", "D1"],
-    ["D2", "D2"],
-    ["D3", "D3"],
-    ["D4", "D4"],
-    ["D5", "D5"],
-    ["D6", "D6"],
-    ["D7", "D7"],
-    ["D8", "D8"],
-    ["D9", "D9"],
-    ["D10", "D10"],
-    ["D11", "D11"],
-    ["D12", "D12"],
-    ["D13", "D13"],
+    // ["D0", "D0"],
+    // ["D1", "D1"],
+    // ["D2", "D2"],
+    // ["D3", "D3"],
+    // ["D4", "D4"],
+    // ["D5", "D5"],
+    // ["D6", "D6"],
+    // ["D7", "D7"],
+    // ["D8", "D8"],
+    // ["D9", "D9"],
+    // ["D10", "D10"],
+    // ["D11", "D11"],
+    // ["D12", "D12"],
+    // ["D13", "D13"],
+    ["D0", "0"],
+    ["D1", "1"],
+    ["D2", "2"],
+    ["D3", "3"],
+    ["D4", "4"],
+    ["D5", "5"],
+    ["D6", "6"],
+    ["D7", "7"],
+    ["D8", "8"],
+    ["D9", "9"],
+    ["D10", "10"],
+    ["D11", "11"],
+    ["D12", "12"],
+    ["D13", "13"],
 ]
 
 var affDigitalPinsRarted = [
@@ -165,6 +179,106 @@ Blockly.Blocks['dc_motor'] = {
                 20,
                 "*"))
             .appendField("set DC Motor")
+            .appendField("Pin")
+            .appendField(new Blockly.FieldDropdown(
+                affDigitalPinsRarted), 'PIN')
+            .appendField("Speed");
+
+        this.setInputsInline(true);
+        this.appendValueInput('SPEED')
+            .setCheck(Blockly.Types.NUMBER.checkList);
+
+        this.appendDummyInput()
+            .appendField("%");
+
+        // .appendField(Blockly.Msg.TEXT_APPEND_APPENDTEXT);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        // Assign 'this' to a variable for use in the tooltip closure below.
+        var thisBlock = this;
+        // this.setTooltip(function () {
+        //     return Blockly.Msg.TEXT_APPEND_TOOLTIP.replace('%1',
+        //         thisBlock.getFieldValue('VAR'));
+        // });
+    },
+    /**
+     * Set's the type of the variable selected in the drop down list. As there is
+     * only one possible option, the variable input is not really checked.
+     * @param {!string} varName Name of the variable to check type.
+     * @return {string} String to indicate the variable type.
+     */
+    getVarType: function (varName) {
+        return Blockly.Types.TEXT;
+    }
+};
+
+Blockly.Blocks['led'] = {
+    /**
+     * Block for appending to a variable in place.
+     * @this Blockly.Block
+     */
+    init: function () {
+        console.log('Blockly.Blocks.aff.HUE')
+        console.log(Blockly.Blocks.aff.HUE)
+        this.setHelpUrl(Blockly.Msg.TEXT_APPEND_HELPURL);
+        this.setColour(Blockly.Blocks.aff.HUE);
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldImage(
+                "/img/blockly/led.png",
+                20,
+                20,
+                "*"))
+            .appendField("set LED")
+            .appendField("Pin")
+            .appendField(new Blockly.FieldDropdown(
+                affDigitalPinsRarted), 'PIN')
+            .appendField("Speed");
+
+        this.setInputsInline(true);
+        this.appendValueInput('SPEED')
+            .setCheck(Blockly.Types.NUMBER.checkList);
+
+        this.appendDummyInput()
+            .appendField("%");
+
+        // .appendField(Blockly.Msg.TEXT_APPEND_APPENDTEXT);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        // Assign 'this' to a variable for use in the tooltip closure below.
+        var thisBlock = this;
+        // this.setTooltip(function () {
+        //     return Blockly.Msg.TEXT_APPEND_TOOLTIP.replace('%1',
+        //         thisBlock.getFieldValue('VAR'));
+        // });
+    },
+    /**
+     * Set's the type of the variable selected in the drop down list. As there is
+     * only one possible option, the variable input is not really checked.
+     * @param {!string} varName Name of the variable to check type.
+     * @return {string} String to indicate the variable type.
+     */
+    getVarType: function (varName) {
+        return Blockly.Types.TEXT;
+    }
+};
+
+Blockly.Blocks['buzzer'] = {
+    /**
+     * Block for appending to a variable in place.
+     * @this Blockly.Block
+     */
+    init: function () {
+        console.log('Blockly.Blocks.aff.HUE')
+        console.log(Blockly.Blocks.aff.HUE)
+        this.setHelpUrl(Blockly.Msg.TEXT_APPEND_HELPURL);
+        this.setColour(Blockly.Blocks.aff.HUE);
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldImage(
+                "/img/blockly/buzzer.png",
+                20,
+                20,
+                "*"))
+            .appendField("set BUZZER")
             .appendField("Pin")
             .appendField(new Blockly.FieldDropdown(
                 affDigitalPinsRarted), 'PIN')

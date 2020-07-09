@@ -51,6 +51,28 @@ Blockly.Arduino['dc_motor'] = function (block) {
     return 'analogWrite('+pin+', map('+speed+', 0, 100, 0, 255));\n';
 };
 
+Blockly.Arduino['led'] = function (block) {
+    // var pin = Blockly.Arduino.variableDB_.getName(
+    //     block.getFieldValue('PIN'), Blockly.Variables.NAME_TYPE);
+    var pin = block.getFieldValue('PIN');
+    var speed = Blockly.Arduino.valueToCode(
+        block, 'SPEED', Blockly.Arduino.ORDER_ATOMIC) || '90';
+    // var varKey = Blockly.Arduino.variableDB_.getName(
+    //     block.getField('VAR'), Blockly.Variables.NAME_TYPE);
+    return 'analogWrite(' + pin + ', map(' + speed + ', 0, 100, 0, 255));\n';
+};
+
+Blockly.Arduino['buzzer'] = function (block) {
+    // var pin = Blockly.Arduino.variableDB_.getName(
+    //     block.getFieldValue('PIN'), Blockly.Variables.NAME_TYPE);
+    var pin = block.getFieldValue('PIN');
+    var speed = Blockly.Arduino.valueToCode(
+        block, 'SPEED', Blockly.Arduino.ORDER_ATOMIC) || '90';
+    // var varKey = Blockly.Arduino.variableDB_.getName(
+    //     block.getField('VAR'), Blockly.Variables.NAME_TYPE);
+    return 'analogWrite(' + pin + ', map(' + speed + ', 0, 100, 0, 255));\n';
+};
+
 Blockly.Arduino['fan'] = function (block) {
     // var pin = Blockly.Arduino.variableDB_.getName(
     //     block.getFieldValue('PIN'), Blockly.Variables.NAME_TYPE);
