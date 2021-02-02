@@ -51,6 +51,17 @@ Blockly.Arduino['dc_motor'] = function (block) {
     return 'analogWrite('+pin+', map('+speed+', 0, 100, 0, 255));\n';
 };
 
+Blockly.Arduino['dc_motor_starter'] = function (block) {
+    // var pin = Blockly.Arduino.variableDB_.getName(
+    //     block.getFieldValue('PIN'), Blockly.Variables.NAME_TYPE);
+    var pin = block.getFieldValue('PIN');
+    var speed = Blockly.Arduino.valueToCode(
+        block, 'SPEED', Blockly.Arduino.ORDER_ATOMIC) || '90';
+    // var varKey = Blockly.Arduino.variableDB_.getName(
+    //     block.getField('VAR'), Blockly.Variables.NAME_TYPE);
+    return 'analogWrite(' + pin + ', map(' + speed + ', 0, 100, 0, 255));\n';
+};
+
 Blockly.Arduino['led'] = function (block) {
     // var pin = Blockly.Arduino.variableDB_.getName(
     //     block.getFieldValue('PIN'), Blockly.Variables.NAME_TYPE);
@@ -62,7 +73,29 @@ Blockly.Arduino['led'] = function (block) {
     return 'analogWrite(' + pin + ', map(' + speed + ', 0, 100, 0, 255));\n';
 };
 
+Blockly.Arduino['led_starter'] = function (block) {
+    // var pin = Blockly.Arduino.variableDB_.getName(
+    //     block.getFieldValue('PIN'), Blockly.Variables.NAME_TYPE);
+    var pin = block.getFieldValue('PIN');
+    var speed = Blockly.Arduino.valueToCode(
+        block, 'SPEED', Blockly.Arduino.ORDER_ATOMIC) || '90';
+    // var varKey = Blockly.Arduino.variableDB_.getName(
+    //     block.getField('VAR'), Blockly.Variables.NAME_TYPE);
+    return 'analogWrite(' + pin + ', map(' + speed + ', 0, 100, 0, 255));\n';
+};
+
 Blockly.Arduino['buzzer'] = function (block) {
+    // var pin = Blockly.Arduino.variableDB_.getName(
+    //     block.getFieldValue('PIN'), Blockly.Variables.NAME_TYPE);
+    var pin = block.getFieldValue('PIN');
+    var speed = Blockly.Arduino.valueToCode(
+        block, 'SPEED', Blockly.Arduino.ORDER_ATOMIC) || '90';
+    // var varKey = Blockly.Arduino.variableDB_.getName(
+    //     block.getField('VAR'), Blockly.Variables.NAME_TYPE);
+    return 'analogWrite(' + pin + ', map(' + speed + ', 0, 100, 0, 255));\n';
+};
+
+Blockly.Arduino['buzzer_starter'] = function (block) {
     // var pin = Blockly.Arduino.variableDB_.getName(
     //     block.getFieldValue('PIN'), Blockly.Variables.NAME_TYPE);
     var pin = block.getFieldValue('PIN');
@@ -87,6 +120,20 @@ Blockly.Arduino['fan'] = function (block) {
     return 'analogWrite(' + pin + ', map(' + speed + ', 0, 100, 0, 255));\n';
 };
 
+Blockly.Arduino['fan_starter'] = function (block) {
+    // var pin = Blockly.Arduino.variableDB_.getName(
+    //     block.getFieldValue('PIN'), Blockly.Variables.NAME_TYPE);
+    var pin = block.getFieldValue('PIN');
+    // var speed = block.getFieldValue('SPEED');
+    var speed = Blockly.Arduino.valueToCode(
+        block, 'SPEED', Blockly.Arduino.ORDER_ATOMIC) || '90';
+    // var servoAngle = Blockly.Arduino.valueToCode(
+    // block, 'SERVO_ANGLE', Blockly.Arduino.ORDER_ATOMIC) || '90';
+    // var varKey = Blockly.Arduino.variableDB_.getName(
+    //     block.getField('VAR'), Blockly.Variables.NAME_TYPE);
+    return 'analogWrite(' + pin + ', map(' + speed + ', 0, 100, 0, 255));\n';
+};
+
 
 Blockly.Arduino['read_temp'] = function (block) {
     var pin = block.getFieldValue('PIN');
@@ -97,6 +144,18 @@ Blockly.Arduino['read_temp'] = function (block) {
     Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
 
     var code =  '-21.231 * ((analogRead('+pin+') * 0.0048828125)- 3.765)';
+    return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['read_temp_starter'] = function (block) {
+    var pin = block.getFieldValue('PIN');
+    Blockly.Arduino.reservePin(
+        block, pin, Blockly.Arduino.PinTypes.INPUT, 'Digital Read');
+
+    var pinSetupCode = 'pinMode(' + pin + ', INPUT);';
+    Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
+
+    var code = '-21.231 * ((analogRead(' + pin + ') * 0.0048828125)- 3.765)';
     return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
@@ -112,11 +171,26 @@ Blockly.Arduino['read_light'] = function (block) {
     return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
+Blockly.Arduino['read_light_starter'] = function (block) {
+    var pin = block.getFieldValue('PIN');
+    Blockly.Arduino.reservePin(
+        block, pin, Blockly.Arduino.PinTypes.INPUT, 'Digital Read');
+
+    var pinSetupCode = 'pinMode(' + pin + ', INPUT)';
+    Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
+
+    var code = 'map(analogRead(' + pin + '), 0, 1023, 0, 100)';
+    return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
 Blockly.Arduino['command_recieved'] = function (block) {
-    Blockly.Arduino.addInclude('Command', 'String Command = "";');
+    // Blockly.Arduino.addInclude('Command', 'String Command = "";');
+    // Blockly.Arduino.addVariable('Command','String', true);
+    var varName = Blockly.Arduino.variableDB_.getName(
+        block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
     var n = 0;
     var branch = Blockly.Arduino.statementToCode(block, 'DO' + n);
-    var code = 'if (WiFiModule.available() > 0) {\nCommand = WiFiModule.readStringUntil(",");\n' + branch + '}';
+    var code = 'if (WiFiModule.available() > 0) {\n'+varName+' = WiFiModule.readStringUntil(",");\n' + branch + '}';
     return code + '\n';
 };
 
@@ -130,6 +204,25 @@ Blockly.Arduino['command_recieved'] = function (block) {
  * @return {string} Completed code.
  */
 Blockly.Arduino['servo'] = function (block) {
+    var pinKey = block.getFieldValue('SERVO_PIN');
+    var servoAngle = Blockly.Arduino.valueToCode(
+        block, 'SERVO_ANGLE', Blockly.Arduino.ORDER_ATOMIC) || '90';
+    var servoName = 'myServo' + pinKey;
+
+    Blockly.Arduino.reservePin(
+        block, pinKey, Blockly.Arduino.PinTypes.SERVO, 'Servo Write');
+
+    Blockly.Arduino.addInclude('servo', '#include <Servo.h>');
+    Blockly.Arduino.addDeclaration('servo_' + pinKey, 'Servo ' + servoName + ';');
+
+    var setupCode = servoName + '.attach(' + pinKey + ');';
+    Blockly.Arduino.addSetup('servo_' + pinKey, setupCode, true);
+
+    var code = servoName + '.write(' + servoAngle + ');\n';
+    return code;
+};
+
+Blockly.Arduino['servo_starter'] = function (block) {
     var pinKey = block.getFieldValue('SERVO_PIN');
     var servoAngle = Blockly.Arduino.valueToCode(
         block, 'SERVO_ANGLE', Blockly.Arduino.ORDER_ATOMIC) || '90';

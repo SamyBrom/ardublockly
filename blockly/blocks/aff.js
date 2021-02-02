@@ -38,6 +38,13 @@ var affAnaloguePins = [
     ["A7", "A7"],
 ]
 
+var affAnaloguePinsStarter = [
+    ["A2", "A2"],
+    ["A3", "A3"],
+    ["A4", "A4"],
+    ["A5", "A5"],
+]
+
 var affDigitalPins = [
     // ["D0", "D0"],
     // ["D1", "D1"],
@@ -86,6 +93,21 @@ var affDigitalPinsRarted = [
     ["D13", "13"],
 ]
 
+var affDigitalPinsRartedStarter = [
+    ["D0", "0"],
+    ["D1", "1"],
+    ["D2", "2"],
+    ["D3", "3"],
+    ["D4", "4"],
+    ["D5", "5"],
+    ["D6", "6"],
+    ["D7", "7"],
+    ["D8", "8"],
+    ["D9", "9"],
+    ["D10", "10"],
+    ["D11", "11"],
+]
+
 var percentages = [
     ["0%","0"],
     ["25%","25"],
@@ -97,7 +119,8 @@ var percentages = [
 /**
  * Common HSV hue for all blocks in this category.
  */
-Blockly.Blocks.aff.HUE = 82;
+// Blockly.Blocks.aff.HUE = 82;
+Blockly.Blocks.aff.HUE = '#FF3C2D';
 
 Blockly.Blocks['initialise_wifi'] = {
     /**
@@ -212,6 +235,56 @@ Blockly.Blocks['dc_motor'] = {
     }
 };
 
+Blockly.Blocks['dc_motor_starter'] = {
+    /**
+     * Block for appending to a variable in place.
+     * @this Blockly.Block
+     */
+    init: function () {
+        console.log('Blockly.Blocks.aff.HUE')
+        console.log(Blockly.Blocks.aff.HUE)
+        this.setHelpUrl(Blockly.Msg.TEXT_APPEND_HELPURL);
+        this.setColour(Blockly.Blocks.aff.HUE);
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldImage(
+                "/img/blockly/motor.png",
+                20,
+                20,
+                "*"))
+            .appendField("set DC Motor")
+            .appendField("Pin")
+            .appendField(new Blockly.FieldDropdown(
+                affDigitalPinsRartedStarter), 'PIN')
+            .appendField("Speed");
+
+        this.setInputsInline(true);
+        this.appendValueInput('SPEED')
+            .setCheck(Blockly.Types.NUMBER.checkList);
+
+        this.appendDummyInput()
+            .appendField("%");
+
+        // .appendField(Blockly.Msg.TEXT_APPEND_APPENDTEXT);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        // Assign 'this' to a variable for use in the tooltip closure below.
+        var thisBlock = this;
+        // this.setTooltip(function () {
+        //     return Blockly.Msg.TEXT_APPEND_TOOLTIP.replace('%1',
+        //         thisBlock.getFieldValue('VAR'));
+        // });
+    },
+    /**
+     * Set's the type of the variable selected in the drop down list. As there is
+     * only one possible option, the variable input is not really checked.
+     * @param {!string} varName Name of the variable to check type.
+     * @return {string} String to indicate the variable type.
+     */
+    getVarType: function (varName) {
+        return Blockly.Types.TEXT;
+    }
+};
+
 Blockly.Blocks['led'] = {
     /**
      * Block for appending to a variable in place.
@@ -232,7 +305,57 @@ Blockly.Blocks['led'] = {
             .appendField("Pin")
             .appendField(new Blockly.FieldDropdown(
                 affDigitalPinsRarted), 'PIN')
-            .appendField("Speed");
+            .appendField("Brightness");
+
+        this.setInputsInline(true);
+        this.appendValueInput('SPEED')
+            .setCheck(Blockly.Types.NUMBER.checkList);
+
+        this.appendDummyInput()
+            .appendField("%");
+
+        // .appendField(Blockly.Msg.TEXT_APPEND_APPENDTEXT);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        // Assign 'this' to a variable for use in the tooltip closure below.
+        var thisBlock = this;
+        // this.setTooltip(function () {
+        //     return Blockly.Msg.TEXT_APPEND_TOOLTIP.replace('%1',
+        //         thisBlock.getFieldValue('VAR'));
+        // });
+    },
+    /**
+     * Set's the type of the variable selected in the drop down list. As there is
+     * only one possible option, the variable input is not really checked.
+     * @param {!string} varName Name of the variable to check type.
+     * @return {string} String to indicate the variable type.
+     */
+    getVarType: function (varName) {
+        return Blockly.Types.TEXT;
+    }
+};
+
+Blockly.Blocks['led_starter'] = {
+    /**
+     * Block for appending to a variable in place.
+     * @this Blockly.Block
+     */
+    init: function () {
+        console.log('Blockly.Blocks.aff.HUE')
+        console.log(Blockly.Blocks.aff.HUE)
+        this.setHelpUrl(Blockly.Msg.TEXT_APPEND_HELPURL);
+        this.setColour(Blockly.Blocks.aff.HUE);
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldImage(
+                "/img/blockly/led.png",
+                20,
+                20,
+                "*"))
+            .appendField("set LED")
+            .appendField("Pin")
+            .appendField(new Blockly.FieldDropdown(
+                affDigitalPinsRartedStarter), 'PIN')
+            .appendField("Brightness");
 
         this.setInputsInline(true);
         this.appendValueInput('SPEED')
@@ -282,7 +405,57 @@ Blockly.Blocks['buzzer'] = {
             .appendField("Pin")
             .appendField(new Blockly.FieldDropdown(
                 affDigitalPinsRarted), 'PIN')
-            .appendField("Speed");
+            .appendField("Volume");
+
+        this.setInputsInline(true);
+        this.appendValueInput('SPEED')
+            .setCheck(Blockly.Types.NUMBER.checkList);
+
+        this.appendDummyInput()
+            .appendField("%");
+
+        // .appendField(Blockly.Msg.TEXT_APPEND_APPENDTEXT);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        // Assign 'this' to a variable for use in the tooltip closure below.
+        var thisBlock = this;
+        // this.setTooltip(function () {
+        //     return Blockly.Msg.TEXT_APPEND_TOOLTIP.replace('%1',
+        //         thisBlock.getFieldValue('VAR'));
+        // });
+    },
+    /**
+     * Set's the type of the variable selected in the drop down list. As there is
+     * only one possible option, the variable input is not really checked.
+     * @param {!string} varName Name of the variable to check type.
+     * @return {string} String to indicate the variable type.
+     */
+    getVarType: function (varName) {
+        return Blockly.Types.TEXT;
+    }
+};
+
+Blockly.Blocks['buzzer_starter'] = {
+    /**
+     * Block for appending to a variable in place.
+     * @this Blockly.Block
+     */
+    init: function () {
+        console.log('Blockly.Blocks.aff.HUE')
+        console.log(Blockly.Blocks.aff.HUE)
+        this.setHelpUrl(Blockly.Msg.TEXT_APPEND_HELPURL);
+        this.setColour(Blockly.Blocks.aff.HUE);
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldImage(
+                "../../img/blockly/buzzer.png",
+                20,
+                20,
+                "*"))
+            .appendField("set BUZZER")
+            .appendField("Pin")
+            .appendField(new Blockly.FieldDropdown(
+                affDigitalPinsRartedStarter), 'PIN')
+            .appendField("Volume");
 
         this.setInputsInline(true);
         this.appendValueInput('SPEED')
@@ -364,6 +537,58 @@ Blockly.Blocks['fan'] = {
     }
 };
 
+Blockly.Blocks['fan_starter'] = {
+    /**
+     * Block for appending to a variable in place.
+     * @this Blockly.Block
+     */
+    init: function () {
+        console.log('Blockly.Blocks.aff.HUE')
+        console.log(Blockly.Blocks.aff.HUE)
+        this.setHelpUrl(Blockly.Msg.TEXT_APPEND_HELPURL);
+        this.setColour(Blockly.Blocks.aff.HUE);
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldImage(
+                "/img/blockly/fan.png",
+                20,
+                20,
+                "*"))
+            .appendField("set Fan")
+            .appendField("Pin")
+            .appendField(new Blockly.FieldDropdown(
+                affDigitalPinsRartedStarter), 'PIN')
+            .appendField("Speed");
+
+        this.setInputsInline(true);
+        this.appendValueInput('SPEED')
+            .setCheck(Blockly.Types.NUMBER.checkList);
+
+        this.appendDummyInput()
+            .appendField("%");
+
+        // this.appendField(new Blockly.FieldNumber(100, 0, 100, 10), 'SPEED')
+        //     .appendField("%");
+        // .appendField(Blockly.Msg.TEXT_APPEND_APPENDTEXT);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        // Assign 'this' to a variable for use in the tooltip closure below.
+        var thisBlock = this;
+        // this.setTooltip(function () {
+        //     return Blockly.Msg.TEXT_APPEND_TOOLTIP.replace('%1',
+        //         thisBlock.getFieldValue('VAR'));
+        // });
+    },
+    /**
+     * Set's the type of the variable selected in the drop down list. As there is
+     * only one possible option, the variable input is not really checked.
+     * @param {!string} varName Name of the variable to check type.
+     * @return {string} String to indicate the variable type.
+     */
+    getVarType: function (varName) {
+        return Blockly.Types.TEXT;
+    }
+};
+
 Blockly.Blocks['servo'] = {
     /**
      * Block for writing an angle value into a servo pin.
@@ -378,10 +603,49 @@ Blockly.Blocks['servo'] = {
                 20,
                 20,
                 "*"))
-            .appendField('set Servo Motor')
+            .appendField('set Servo Motor Pin')
             .appendField(new Blockly.FieldDropdown(
                 // Blockly.Arduino.Boards.selected.digitalPins), 'SERVO_PIN');
                 affDigitalPinsRarted), 'SERVO_PIN');
+        this.setInputsInline(false);
+        this.appendValueInput('SERVO_ANGLE')
+            .setCheck(Blockly.Types.NUMBER.checkList)
+            .appendField(Blockly.Msg.ARD_SERVO_WRITE_TO);
+        this.appendDummyInput()
+            .appendField(Blockly.Msg.ARD_SERVO_WRITE_DEG_180);
+        this.setInputsInline(true);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        // this.setTooltip(Blockly.Msg.ARD_SERVO_WRITE_TIP);
+    },
+    /**
+     * Updates the content of the the pin related fields.
+     * @this Blockly.Block
+     */
+    updateFields: function () {
+        Blockly.Arduino.Boards.refreshBlockFieldDropdown(
+            this, 'SERVO_PIN', 'digitalPins');
+    }
+};
+
+Blockly.Blocks['servo_starter'] = {
+    /**
+     * Block for writing an angle value into a servo pin.
+     * @this Blockly.Block
+     */
+    init: function () {
+        this.setHelpUrl('http://arduino.cc/en/Reference/ServoWrite');
+        this.setColour(Blockly.Blocks.aff.HUE);
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldImage(
+                "/img/blockly/servo.png",
+                20,
+                20,
+                "*"))
+            .appendField('set Servo Motor Pin')
+            .appendField(new Blockly.FieldDropdown(
+                // Blockly.Arduino.Boards.selected.digitalPins), 'SERVO_PIN');
+                affDigitalPinsRartedStarter), 'SERVO_PIN');
         this.setInputsInline(false);
         this.appendValueInput('SERVO_ANGLE')
             .setCheck(Blockly.Types.NUMBER.checkList)
@@ -412,7 +676,7 @@ Blockly.Blocks['read_temp'] = {
         console.log('Blockly.Arduino.Boards.selected.digitalPins')
         console.log(Blockly.Arduino.Boards.selected.digitalPins)
         this.setHelpUrl('http://arduino.cc/en/Reference/DigitalRead');
-        this.setColour(322);
+        this.setColour('#80C535');
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage(
                 "/img/blockly/temperature.png",
@@ -439,6 +703,42 @@ Blockly.Blocks['read_temp'] = {
     }
 };
 
+Blockly.Blocks['read_temp_starter'] = {
+    /**
+     * Block for creating a 'read pin'.
+     * @this Blockly.Block
+     */
+    init: function () {
+        console.log('Blockly.Arduino.Boards.selected.digitalPins')
+        console.log(Blockly.Arduino.Boards.selected.digitalPins)
+        this.setHelpUrl('http://arduino.cc/en/Reference/DigitalRead');
+        this.setColour('#80C535');
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldImage(
+                "/img/blockly/temperature.png",
+                20,
+                20,
+                "*"))
+            .appendField("Read Temperature Pin")
+            .appendField(new Blockly.FieldDropdown(
+                affAnaloguePinsStarter), 'PIN');
+        this.setOutput(true, Blockly.Types.BOOLEAN.output);
+        // this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
+    },
+    /** @return {!string} The type of return value for the block, an integer. */
+    getBlockType: function () {
+        return Blockly.Types.BOOLEAN;
+    },
+    /**
+     * Updates the content of the the pin related fields.
+     * @this Blockly.Block
+     */
+    updateFields: function () {
+        Blockly.Arduino.Boards.refreshBlockFieldDropdown(
+            this, 'PIN', 'digitalPins');
+    }
+};
+
 Blockly.Blocks['read_light'] = {
     /**
      * Block for creating a 'read pin'.
@@ -448,7 +748,7 @@ Blockly.Blocks['read_light'] = {
         console.log('Blockly.Arduino.Boards.selected.digitalPins')
         console.log(Blockly.Arduino.Boards.selected.digitalPins)
         this.setHelpUrl('http://arduino.cc/en/Reference/DigitalRead');
-        this.setColour(322);
+        this.setColour('#80C535');
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage(
                 "/img/blockly/brightness.png",
@@ -458,6 +758,42 @@ Blockly.Blocks['read_light'] = {
             .appendField("Read Light Intensity Pin")
             .appendField(new Blockly.FieldDropdown(
                 affAnaloguePins), 'PIN');
+        this.setOutput(true, Blockly.Types.BOOLEAN.output);
+        // this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
+    },
+    /** @return {!string} The type of return value for the block, an integer. */
+    getBlockType: function () {
+        return Blockly.Types.BOOLEAN;
+    },
+    /**
+     * Updates the content of the the pin related fields.
+     * @this Blockly.Block
+     */
+    updateFields: function () {
+        Blockly.Arduino.Boards.refreshBlockFieldDropdown(
+            this, 'PIN', 'digitalPins');
+    }
+};
+
+Blockly.Blocks['read_light_starter'] = {
+    /**
+     * Block for creating a 'read pin'.
+     * @this Blockly.Block
+     */
+    init: function () {
+        console.log('Blockly.Arduino.Boards.selected.digitalPins')
+        console.log(Blockly.Arduino.Boards.selected.digitalPins)
+        this.setHelpUrl('http://arduino.cc/en/Reference/DigitalRead');
+        this.setColour('#80C535');
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldImage(
+                "/img/blockly/brightness.png",
+                20,
+                20,
+                "*"))
+            .appendField("Read Light Intensity Pin")
+            .appendField(new Blockly.FieldDropdown(
+                affAnaloguePinsStarter), 'PIN');
         this.setOutput(true, Blockly.Types.BOOLEAN.output);
         // this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
     },
@@ -490,6 +826,7 @@ Blockly.Blocks['command_recieved'] = {
                 15,
                 "*"))
             .appendField("When command recieved")
+            .appendField(new Blockly.FieldVariable("Command"), "VAR", null, null, "string");
         this.appendStatementInput('DO0')
             .appendField(Blockly.Msg.CONTROLS_IF_MSG_THEN);
         this.setPreviousStatement(true);
@@ -510,6 +847,10 @@ Blockly.Blocks['command_recieved'] = {
         // });
         this.elseifCount_ = 0;
         this.elseCount_ = 0;
+    },
+
+    getVarType: function (varName) {
+        return Blockly.Types.TEXT;
     },
     /**
      * Create XML to represent the number of else-if and else inputs.

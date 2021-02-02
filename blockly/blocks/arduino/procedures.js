@@ -23,10 +23,10 @@ Blockly.Blocks['arduino_functions'] = {
    */
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.ARD_FUN_RUN_SETUP);
+      .appendField("Blocks run first:");
     this.appendStatementInput('SETUP_FUNC');
     this.appendDummyInput()
-        .appendField(Blockly.Msg.ARD_FUN_RUN_LOOP);
+        .appendField("Blocks loop forever:");
     this.appendStatementInput('LOOP_FUNC');
     this.setInputsInline(false);
     this.setColour(Blockly.Blocks.procedures.HUE);

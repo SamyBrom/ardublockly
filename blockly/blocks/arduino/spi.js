@@ -54,6 +54,8 @@ Blockly.Blocks['spi_setup'] = {
                  [Blockly.Msg.ARD_SPI_SETUP_MODE2, 'SPI_MODE2'],
                  [Blockly.Msg.ARD_SPI_SETUP_MODE3, 'SPI_MODE3']]),
             'SPI_MODE');
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
     this.setTooltip(Blockly.Msg.ARD_SPI_SETUP_TIP);
   },
   /**

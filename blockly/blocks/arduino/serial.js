@@ -40,6 +40,8 @@ Blockly.Blocks['serial_setup'] = {
             new Blockly.FieldDropdown(
                 Blockly.Arduino.Boards.selected.serialSpeed), 'SPEED')
         .appendField(Blockly.Msg.ARD_SERIAL_BPS);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
     this.setInputsInline(true);
     this.setTooltip(Blockly.Msg.ARD_SERIAL_SETUP_TIP);
   },

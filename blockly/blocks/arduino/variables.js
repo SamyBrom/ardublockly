@@ -28,56 +28,60 @@ var booleanValues = [
   ["On", true],
   ["Off", false]
 ]
-Blockly.Blocks.variables_get = {
-  init: function () {
-    this.setHelpUrl(Blockly.Msg.VARIABLES_GET_HELPURL);
-    this.setColour(Blockly.Blocks.variables.HUE);
-    this.appendDummyInput().appendField(new Blockly.FieldVariable(Blockly.Msg.VARIABLES_DEFAULT_NAME), "VAR");
-    this.setOutput(!0, "Number");
-    this.setTooltip(Blockly.Msg.VARIABLES_GET_TOOLTIP);
-    this.contextMenuMsg_ = Blockly.Msg.VARIABLES_GET_CREATE_SET
-  },
-  getVars: function () {
-    return [this.getFieldValue("VAR")]
-  },
-  renameVar: function (a, b) {
-    Blockly.Names.equals(a, this.getFieldValue("VAR")) &&
-      this.setFieldValue(b, "VAR")
-  },
-  contextMenuType_: "variables_set",
-  customContextMenu: function (a) {
-    var b = {
-      enabled: !0
-    },
-      c = this.getFieldValue("VAR");
-    b.text = this.contextMenuMsg_.replace("%1", c);
-    c = goog.dom.createDom("field", null, c);
-    c.setAttribute("name", "VAR");
-    c = goog.dom.createDom("block", null, c);
-    c.setAttribute("type", this.contextMenuType_);
-    b.callback = Blockly.ContextMenu.callbackFactory(this, c);
-    a.push(b)
-  }
-};
-Blockly.Blocks.variables_set = {
-  init: function () {
-    this.setColour(Blockly.Blocks.variables.HUE);
-    this.appendValueInput("VALUE").appendField("Set").appendField(new Blockly.FieldVariable(Blockly.Msg.VARIABLES_DEFAULT_NAME), "VAR").appendField("=").setCheck("Number");
-    this.contextMenuMsg_ = Blockly.Msg.VARIABLES_SET_CREATE_GET;
-    this.setPreviousStatement(!0);
-    this.setNextStatement(!0);
-    this.setTooltip(Blockly.Msg.VARIABLES_SET_TOOLTIP)
-  },
-  getVars: function () {
-    return [this.getFieldValue("VAR")]
-  },
-  renameVar: function (a,
-    b) {
-    Blockly.Names.equals(a, this.getFieldValue("VAR")) && this.setFieldValue(b, "VAR")
-  },
-  contextMenuType_: "variables_get",
-  customContextMenu: Blockly.Blocks.variables_get.customContextMenu
-};
+// Blockly.Blocks.variables_get = {
+//   init: function () {
+//     this.setHelpUrl(Blockly.Msg.VARIABLES_GET_HELPURL);
+//     this.setColour(Blockly.Blocks.variables.HUE);
+//     this.appendDummyInput().appendField(new Blockly.FieldVariable(Blockly.Msg.VARIABLES_DEFAULT_NAME), "VAR");
+//     this.setOutput(!0, "Number");
+//     this.setTooltip(Blockly.Msg.VARIABLES_GET_TOOLTIP);
+//     this.contextMenuMsg_ = Blockly.Msg.VARIABLES_GET_CREATE_SET
+//   },
+//   getVars: function () {
+//     return [this.getFieldValue("VAR")]
+//   },
+//   renameVar: function (a, b) {
+//     Blockly.Names.equals(a, this.getFieldValue("VAR")) &&
+//       this.setFieldValue(b, "VAR")
+//   },
+//   contextMenuType_: "variables_set",
+//   customContextMenu: function (a) {
+//     var b = {
+//       enabled: !0
+//     },
+//       c = this.getFieldValue("VAR");
+//     b.text = this.contextMenuMsg_.replace("%1", c);
+//     c = goog.dom.createDom("field", null, c);
+//     c.setAttribute("name", "VAR");
+//     c = goog.dom.createDom("block", null, c);
+//     c.setAttribute("type", this.contextMenuType_);
+//     b.callback = Blockly.ContextMenu.callbackFactory(this, c);
+//     a.push(b)
+//   }
+// };
+// Blockly.Blocks.variables_set = {
+//   init: function () {
+//     this.setColour(Blockly.Blocks.variables.HUE);
+//     this.appendValueInput("VALUE")
+//       .appendField("Set")
+//       .appendField(new Blockly.FieldVariable(Blockly.Msg.VARIABLES_DEFAULT_NAME), "VAR")
+//       .appendField("=")
+//       .setCheck(null)
+//     // this.contextMenuMsg_ = Blockly.Msg.VARIABLES_SET_CREATE_GET;
+//     // this.setPreviousStatement(!0);
+//     // this.setNextStatement(!0);
+//     // this.setTooltip(Blockly.Msg.VARIABLES_SET_TOOLTIP)
+//   },
+//   getVars: function () {
+//     return [this.getFieldValue("VAR")]
+//   },
+//   renameVar: function (a,
+//     b) {
+//     Blockly.Names.equals(a, this.getFieldValue("VAR")) && this.setFieldValue(b, "VAR")
+//   },
+//   contextMenuType_: "variables_get",
+//   customContextMenu: Blockly.Blocks.variables_get.customContextMenu
+// };
 Blockly.Blocks.variables_get_text = {
   init: function () {
     this.setHelpUrl(Blockly.Msg.VARIABLES_GET_HELPURL);
@@ -117,7 +121,7 @@ Blockly.Blocks.variables_set_text = {
       // .appendField(new Blockly.FieldTextInput(Blockly.Msg.VARIABLES_DEFAULT_NAME_TEXT), "VARTEXT")
       .appendField(new Blockly.FieldVariable(
         'text'), 'VARTEXT')
-      .appendField("=");
+      .appendField("=")
       // .setCheck("String");
     this.setPreviousStatement(!0);
     this.setNextStatement(!0);

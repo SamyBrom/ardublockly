@@ -255,6 +255,12 @@ Ardublockly.discardAllBlocks = function() {
   }
 };
 
+/** Discard all blocks from the workspace. */
+Ardublockly.newProject = function () {
+  Ardublockly.discardAllBlocks();
+  $('#sketch_name').val('Sketch_Name')
+};
+
 /** @return {!boolean} Indicates if the Blockly workspace has blocks. */
 Ardublockly.isWorkspaceEmpty = function() {
   return Ardublockly.workspace.getAllBlocks().length ? false : true;

@@ -850,7 +850,7 @@ ul.side-nav li ul li ul li {
 }
 
 .blocklyIconGroup {
-  display: none;
+  /* display: none; */
 }
 
 /* .load_dialog */

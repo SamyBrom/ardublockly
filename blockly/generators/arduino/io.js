@@ -36,6 +36,20 @@ Blockly.Arduino['io_digitalwrite'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['io_digitalwrite_starter'] = function (block) {
+  var pin = block.getFieldValue('PIN');
+  var stateOutput = Blockly.Arduino.valueToCode(
+    block, 'STATE', Blockly.Arduino.ORDER_ATOMIC) || 'LOW';
+
+  Blockly.Arduino.reservePin(
+    block, pin, Blockly.Arduino.PinTypes.OUTPUT, 'Digital Write');
+
+  var pinSetupCode = 'pinMode(' + pin + ', OUTPUT);';
+  Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
+
+  var code = 'digitalWrite(' + pin + ', ' + stateOutput + ');\n';
+  return code;
+};
 /**
  * Function for reading a digital pin (X).
  * Arduino code: setup { pinMode(X, INPUT); }
@@ -47,6 +61,18 @@ Blockly.Arduino['io_digitalread'] = function(block) {
   var pin = block.getFieldValue('PIN');
   Blockly.Arduino.reservePin(
       block, pin, Blockly.Arduino.PinTypes.INPUT, 'Digital Read');
+
+  var pinSetupCode = 'pinMode(' + pin + ', INPUT);';
+  Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
+
+  var code = 'digitalRead(' + pin + ')';
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['io_digitalread_starter'] = function (block) {
+  var pin = block.getFieldValue('PIN');
+  Blockly.Arduino.reservePin(
+    block, pin, Blockly.Arduino.PinTypes.INPUT, 'Digital Read');
 
   var pinSetupCode = 'pinMode(' + pin + ', INPUT);';
   Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
@@ -108,6 +134,29 @@ Blockly.Arduino['io_analogwrite'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['io_analogwrite_starter'] = function (block) {
+  var pin = block.getFieldValue('PIN');
+  var stateOutput = Blockly.Arduino.valueToCode(
+    block, 'NUM', Blockly.Arduino.ORDER_ATOMIC) || '0';
+
+  Blockly.Arduino.reservePin(
+    block, pin, Blockly.Arduino.PinTypes.OUTPUT, 'Analogue Write');
+
+  var pinSetupCode = 'pinMode(' + pin + ', OUTPUT);';
+  Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
+
+  // Warn if the input value is out of range
+  if ((stateOutput < 0) || (stateOutput > 255)) {
+    block.setWarningText('The analogue value set must be between 0 and 255',
+      'pwm_value');
+  } else {
+    block.setWarningText(null, 'pwm_value');
+  }
+
+  var code = 'analogWrite(' + pin + ', ' + stateOutput + ');\n';
+  return code;
+};
+
 /**
  * Function for reading an analogue pin value (X).
  * Arduino code: setup { pinMode(X, INPUT); }
@@ -119,6 +168,18 @@ Blockly.Arduino['io_analogread'] = function(block) {
   var pin = block.getFieldValue('PIN');
   Blockly.Arduino.reservePin(
       block, pin, Blockly.Arduino.PinTypes.INPUT, 'Analogue Read');
+
+  var pinSetupCode = 'pinMode(' + pin + ', INPUT);';
+  Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
+
+  var code = 'analogRead(' + pin + ')';
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['io_analogread_starter'] = function (block) {
+  var pin = block.getFieldValue('PIN');
+  Blockly.Arduino.reservePin(
+    block, pin, Blockly.Arduino.PinTypes.INPUT, 'Analogue Read');
 
   var pinSetupCode = 'pinMode(' + pin + ', INPUT);';
   Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);

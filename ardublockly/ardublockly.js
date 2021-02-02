@@ -140,6 +140,7 @@ Ardublockly.bindActionFunctions = function() {
   Ardublockly.bindClick_('button_load', Ardublockly.loadUserXmlFile);
   Ardublockly.bindClick_('button_save', Ardublockly.saveXmlFile);
   Ardublockly.bindClick_('button_save_ino', Ardublockly.saveInoFile);
+  Ardublockly.bindClick_('button_new_project', Ardublockly.newProject);
   Ardublockly.bindClick_('menu_save_ino', Ardublockly.saveInoFile);
   Ardublockly.bindClick_('button_delete', Ardublockly.discardAllBlocks);
   Ardublockly.bindClick_('button_inline', Ardublockly.inline);
@@ -153,6 +154,10 @@ Ardublockly.bindActionFunctions = function() {
   });
   Ardublockly.bindClick_('menu_save', function() {
     Ardublockly.saveXmlFile();
+    $('.button-collapse').sideNav('hide');
+  });
+  Ardublockly.bindClick_('menu_new', function () {
+    Ardublockly.newProject();
     $('.button-collapse').sideNav('hide');
   });
   Ardublockly.bindClick_('menu_delete', function() {

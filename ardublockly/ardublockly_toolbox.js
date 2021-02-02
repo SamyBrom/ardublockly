@@ -161,13 +161,13 @@ Ardublockly.TOOLBOX_XML =
 '        </value>' +
 '    </block>' +
 '    <block type="variables_get"></block>' +
-'    <block type="variables_set_text">' +
+'    <block type="variables_set">' +
 '      <value name="VALUE">' +
 '        <block type="text"></block>' +
 '      </value>' +
 '    </block>' +
 '    <block type="variables_get_text"></block>' +
-'    <block type="variables_set_bool">' +
+'    <block type="variables_set">' +
 '        <value name="VALUE">' +
 '            <shadow type="logic_boolean2"></shadow>' +
 '        </value>' +
@@ -313,37 +313,37 @@ Ardublockly.TOOLBOX_XML_STARTER =
     '    <block type="initialise_wifi"></block>' +
     '    <block type="send_wifi"></block>' +
     '    <block type="command_recieved"></block>' +
-    '    <block type="read_temp"></block>' +
-    '    <block type="read_light"></block>' +
-    '    <block type="dc_motor">'+
+    '    <block type="read_temp_starter"></block>' +
+    '    <block type="read_light_starter"></block>' +
+    '    <block type="dc_motor_starter">'+
     '      <value name="SPEED">' +
     '        <block type="math_number">' +
     '          <field name="NUM">100</field>' +
     '        </block>' +
     '      </value>' +
     '    </block>' +
-    '    <block type="led">'+
+    '    <block type="led_starter">'+
     '      <value name="SPEED">' +
     '        <block type="math_number">' +
     '          <field name="NUM">100</field>' +
     '        </block>' +
     '      </value>' +
     '    </block>' +
-    '    <block type="buzzer">' +
+    '    <block type="buzzer_starter">' +
     '      <value name="SPEED">' +
     '        <block type="math_number">' +
     '          <field name="NUM">100</field>' +
     '        </block>' +
     '      </value>' +
     '    </block>' +    
-    '    <block type="fan">' +
+    '    <block type="fan_starter">' +
     '      <value name="SPEED">' +
     '        <block type="math_number">' +
     '          <field name="NUM">100</field>' +
     '        </block>' +
     '      </value>' +
     '    </block>' +
-    '    <block type="servo">' +
+    '    <block type="servo_starter">' +
     '      <value name="SERVO_ANGLE">' +
     '        <block type="math_number">' +
     '          <field name="NUM">90</field>' +
@@ -385,15 +385,15 @@ Ardublockly.TOOLBOX_XML_STARTER =
     '        </value>' +
     '    </block>' +
     '    <block type="variables_get"></block>' +
-    '    <block type="variables_set_text">' +
+    '    <block type="variables_set">' +
     '      <value name="VALUE">' +
     '        <block type="text"></block>' +
     '      </value>' +
     '    </block>' +
     '    <block type="variables_get_text"></block>' +
-    '    <block type="variables_set_bool">' +
+    '    <block type="variables_set">' +
     '        <value name="VALUE">' +
-    '            <shadow type="logic_boolean2"></shadow>' +
+    '            <block type="logic_boolean"></block>' +
     '        </value>' +
     '    </block>' +
     '    <block type="variables_get_bool"></block>' +
@@ -408,19 +408,19 @@ Ardublockly.TOOLBOX_XML_STARTER =
     // '  <category web-class="moderate" id="catFunctions" name="Functions" custom="PROCEDURE"></category>' +
     // '  <sep></sep>' +
     '  <category id="catInputOutput" name="Input/Output">' +
-    '    <block type="io_digitalwrite">' +
+    '    <block type="io_digitalwrite_starter">' +
     '      <value name="STATE">' +
     '        <block type="io_highlow"></block>' +
     '      </value>' +
     '    </block>' +
-    '    <block type="io_digitalread"></block>' +
+    '    <block type="io_digitalread_starter"></block>' +
     '    <block type="io_builtin_led">' +
     '      <value name="STATE">' +
     '        <block type="io_highlow"></block>' +
     '      </value>' +
     '    </block>' +
-    '    <block type="io_analogwrite"></block>' +
-    '    <block type="io_analogread"></block>' +
+    '    <block type="io_analogwrite_starter"></block>' +
+    '    <block type="io_analogread_starter"></block>' +
     '    <block type="io_highlow"></block>' +
     '  </category>' +
     '  <sep></sep>' +

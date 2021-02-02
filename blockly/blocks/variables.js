@@ -114,7 +114,7 @@ Blockly.Blocks['variables_set'] = {
     this.contextMenuMsg_ = Blockly.Msg.VARIABLES_SET_CREATE_GET;
   },
   contextMenuType_: 'variables_get',
-  customContextMenu: Blockly.Blocks['variables_get'].customContextMenu,
+  // customContextMenu: Blockly.Blocks['variables_get'].customContextMenu,
   /**
    * Searches through the nested blocks to find a variable type.
    * @this Blockly.Block
