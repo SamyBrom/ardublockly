@@ -169,7 +169,7 @@ Ardublockly.TOOLBOX_XML =
 '    <block type="variables_get_text"></block>' +
 '    <block type="variables_set">' +
 '        <value name="VALUE">' +
-'            <shadow type="logic_boolean2"></shadow>' +
+'            <shadow type="logic_boolean"></shadow>' +
 '        </value>' +
 '    </block>' +
 '    <block type="variables_get_bool"></block>' +
