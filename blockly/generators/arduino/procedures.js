@@ -139,6 +139,7 @@ Blockly.Arduino['procedures_ifreturn'] = function(block) {
  * @return {string} Completed code.
  */
 Blockly.Arduino['arduino_functions'] = function(block) {
+  Blockly.Arduino.addInclude('Math.h', '#include <Math.h>');
   // Edited version of Blockly.Generator.prototype.statementToCode
   function statementToCodeNoTab(block, name) {
     var targetBlock = block.getInputTargetBlock(name);
