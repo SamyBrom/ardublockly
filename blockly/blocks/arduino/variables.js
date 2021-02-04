@@ -82,59 +82,59 @@ var booleanValues = [
 //   contextMenuType_: "variables_get",
 //   customContextMenu: Blockly.Blocks.variables_get.customContextMenu
 // };
-Blockly.Blocks.variables_get_text = {
-  init: function () {
-    this.setHelpUrl(Blockly.Msg.VARIABLES_GET_HELPURL);
-    this.setColour(Blockly.Blocks.variables.HUE2);
-    this.appendDummyInput().appendField(new Blockly.FieldTextInput('text'), "VARTEXT");
-    this.setOutput(!0, "String");
-    this.setTooltip(Blockly.Msg.VARIABLES_GET_TOOLTIP);
-    this.contextMenuMsg_ = Blockly.Msg.VARIABLES_GET_CREATE_SET
-  },
-  getVarsText: function () {
-    return [this.getFieldValue("VARTEXT")]
-  },
-  renameVarText: function (a, b) {
-    Blockly.Names.equals(a,
-      this.getFieldValue("VARTEXT")) && this.setFieldValue(b, "VARTEXT")
-  },
-  contextMenuType_: "variables_set_text",
-  customContextMenu: function (a) {
-    var b = {
-      enabled: !0
-    },
-      c = this.getFieldValue("VARTEXT");
-    b.text = this.contextMenuMsg_.replace("%1", c);
-    c = goog.dom.createDom("field", null, c);
-    c.setAttribute("name", "VARTEXT");
-    c = goog.dom.createDom("block", null, c);
-    c.setAttribute("type", this.contextMenuType_);
-    b.callback = Blockly.ContextMenu.callbackFactory(this, c);
-    a.push(b)
-  }
-};
-Blockly.Blocks.variables_set_text = {
-  init: function () {
-    this.setColour(Blockly.Blocks.variables.HUE2);
-    this.appendValueInput("VALUE")
-      .appendField("Set")
-      // .appendField(new Blockly.FieldTextInput(Blockly.Msg.VARIABLES_DEFAULT_NAME_TEXT), "VARTEXT")
-      .appendField(new Blockly.FieldVariable(
-        'text'), 'VARTEXT')
-      .appendField("=")
-      // .setCheck("String");
-    this.setPreviousStatement(!0);
-    this.setNextStatement(!0);
-    // this.setTooltip(Blockly.Msg.VARIABLES_SET_TOOLTIP)
-  },
-  getVarsText: function () {
-    return [this.getFieldValue("VARTEXT")]
-  },
-  renameVarText: function (a, b) {
-    Blockly.Names.equals(a,
-      this.getFieldValue("VARTEXT")) && this.setFieldValue(b, "VARTEXT")
-  }
-};
+// Blockly.Blocks.variables_get_text = {
+//   init: function () {
+//     this.setHelpUrl(Blockly.Msg.VARIABLES_GET_HELPURL);
+//     this.setColour(Blockly.Blocks.variables.HUE2);
+//     this.appendDummyInput().appendField(new Blockly.FieldTextInput('text'), "VARTEXT");
+//     this.setOutput(!0, "String");
+//     this.setTooltip(Blockly.Msg.VARIABLES_GET_TOOLTIP);
+//     this.contextMenuMsg_ = Blockly.Msg.VARIABLES_GET_CREATE_SET
+//   },
+//   getVarsText: function () {
+//     return [this.getFieldValue("VARTEXT")]
+//   },
+//   renameVarText: function (a, b) {
+//     Blockly.Names.equals(a,
+//       this.getFieldValue("VARTEXT")) && this.setFieldValue(b, "VARTEXT")
+//   },
+//   contextMenuType_: "variables_set_text",
+//   customContextMenu: function (a) {
+//     var b = {
+//       enabled: !0
+//     },
+//       c = this.getFieldValue("VARTEXT");
+//     b.text = this.contextMenuMsg_.replace("%1", c);
+//     c = goog.dom.createDom("field", null, c);
+//     c.setAttribute("name", "VARTEXT");
+//     c = goog.dom.createDom("block", null, c);
+//     c.setAttribute("type", this.contextMenuType_);
+//     b.callback = Blockly.ContextMenu.callbackFactory(this, c);
+//     a.push(b)
+//   }
+// };
+// Blockly.Blocks.variables_set_text = {
+//   init: function () {
+//     this.setColour(Blockly.Blocks.variables.HUE2);
+//     this.appendValueInput("VALUE")
+//       .appendField("Set")
+//       // .appendField(new Blockly.FieldTextInput(Blockly.Msg.VARIABLES_DEFAULT_NAME_TEXT), "VARTEXT")
+//       .appendField(new Blockly.FieldVariable(
+//         'text'), 'VARTEXT')
+//       .appendField("=")
+//       // .setCheck("String");
+//     this.setPreviousStatement(!0);
+//     this.setNextStatement(!0);
+//     // this.setTooltip(Blockly.Msg.VARIABLES_SET_TOOLTIP)
+//   },
+//   getVarsText: function () {
+//     return [this.getFieldValue("VARTEXT")]
+//   },
+//   renameVarText: function (a, b) {
+//     Blockly.Names.equals(a,
+//       this.getFieldValue("VARTEXT")) && this.setFieldValue(b, "VARTEXT")
+//   }
+// };
 Blockly.Blocks.variables_get_bool = {
   init: function () {
     this.setHelpUrl(Blockly.Msg.VARIABLES_GET_HELPURL);
@@ -167,25 +167,25 @@ Blockly.Blocks.variables_get_bool = {
     a.push(b)
   }
 };
-Blockly.Blocks.variables_set_bool = {
-  init: function () {
-    this.setColour(Blockly.Blocks.variables.HUE3);
-    this.appendValueInput("VALUE")
-      .appendField("Set")
-      .appendField(new Blockly.FieldVariable('state'), "VARBOOL")
-      .appendField("=").setCheck("Boolean");
-    this.setPreviousStatement(!0);
-    this.setNextStatement(!0);
-    this.setTooltip(Blockly.Msg.VARIABLES_SET_TOOLTIP)
-  },
-  getVarsBool: function () {
-    return [this.getFieldValue("VARBOOL")]
-  },
-  renameVarBool: function (a, b) {
-    Blockly.Names.equals(a,
-      this.getFieldValue("VARBOOL")) && this.setFieldValue(b, "VARBOOL")
-  }
-};
+// Blockly.Blocks.variables_set_bool = {
+//   init: function () {
+//     this.setColour(Blockly.Blocks.variables.HUE3);
+//     this.appendValueInput("VALUE")
+//       .appendField("Set")
+//       .appendField(new Blockly.FieldVariable('state'), "VARBOOL")
+//       .appendField("=").setCheck("Boolean");
+//     this.setPreviousStatement(!0);
+//     this.setNextStatement(!0);
+//     this.setTooltip(Blockly.Msg.VARIABLES_SET_TOOLTIP)
+//   },
+//   getVarsBool: function () {
+//     return [this.getFieldValue("VARBOOL")]
+//   },
+//   renameVarBool: function (a, b) {
+//     Blockly.Names.equals(a,
+//       this.getFieldValue("VARBOOL")) && this.setFieldValue(b, "VARBOOL")
+//   }
+// };
 
 Blockly.Blocks['variables_set_type'] = {
   /**

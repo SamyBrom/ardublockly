@@ -385,13 +385,13 @@ Ardublockly.TOOLBOX_XML_STARTER =
     '        </value>' +
     '    </block>' +
     '    <block type="variables_get"></block>' +
-    '    <block type="variables_set">' +
+    '    <block type="variables_set_text">' +
     '      <value name="VALUE">' +
     '        <block type="text"></block>' +
     '      </value>' +
     '    </block>' +
-    '    <block type="variables_get_text"></block>' +
-    '    <block type="variables_set">' +
+    // '    <block type="variables_get"></block>' +
+    '    <block type="variables_set_bool">' +
     '        <value name="VALUE">' +
     '            <block type="logic_boolean"></block>' +
     '        </value>' +

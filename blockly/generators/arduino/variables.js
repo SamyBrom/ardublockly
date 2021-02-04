@@ -21,9 +21,13 @@ Blockly.Arduino.variables_set = function () {
 Blockly.Arduino.variables_get = function () {
   return [Blockly.Arduino.variableDB_.getName(this.getFieldValue("VAR"), Blockly.Variables.NAME_TYPE), Blockly.Arduino.ORDER_ATOMIC]
 };
+// Blockly.Arduino.variables_set_text = function () {
+//   var a = Blockly.Arduino.valueToCode(this, "VALUE", Blockly.Arduino.ORDER_ASSIGNMENT) || '""';
+//   return "s_" + Blockly.Arduino.variableDB_.getName(this.getFieldValue("VARTEXT"), Blockly.Variables.NAME_TYPE) + " = " + a + ";\n"
+// };
 Blockly.Arduino.variables_set_text = function () {
-  var a = Blockly.Arduino.valueToCode(this, "VALUE", Blockly.Arduino.ORDER_ASSIGNMENT) || '""';
-  return "s_" + Blockly.Arduino.variableDB_.getName(this.getFieldValue("VARTEXT"), Blockly.Variables.NAME_TYPE) + " = " + a + ";\n"
+  var a = Blockly.Arduino.valueToCode(this, "VALUE", Blockly.Arduino.ORDER_ASSIGNMENT) || "0";
+  return Blockly.Arduino.variableDB_.getName(this.getFieldValue("VAR"), Blockly.Variables.NAME_TYPE) + " = " + a + ";\n"
 };
 Blockly.Arduino.variables_get_text = function () {
   return ["s_" + Blockly.Arduino.variableDB_.getName(this.getFieldValue("VARTEXT"), Blockly.Variables.NAME_TYPE), Blockly.Arduino.ORDER_ATOMIC]
