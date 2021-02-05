@@ -163,6 +163,7 @@ Blockly.Arduino['math_single'] = function(block) {
  * @return {string} Completed code.
  */
 Blockly.Arduino['math_constant'] = function(block) {
+  Blockly.Arduino.addInclude('Math.h', '#include <Math.h>');
   var CONSTANTS = {
     'PI': ['M_PI', Blockly.Arduino.ORDER_UNARY_POSTFIX],
     'E': ['M_E', Blockly.Arduino.ORDER_UNARY_POSTFIX],

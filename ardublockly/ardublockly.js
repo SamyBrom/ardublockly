@@ -96,7 +96,8 @@ function loadOnline() {
       data.forEach(loadable => {
         $('#load-items').append('<div style="position: relative"><a href="#!" id="loadable_' + loadable._id + '" class="collection-item">' + loadable.title + '</a><a class="delete-icon" id="loadable_delete_' + loadable._id +'" href="#!"><span class="material-icons">delete</span></a></div>')
         $('#loadable_' + loadable._id).unbind('click').click(function (element) {
-          var success = Ardublockly.replaceBlocksfromXml(loadable.xml);
+          console.log('clicked loadable: ' + loadable.xml)
+          var success = Ardublockly.replaceBlocksfromXml(loadable.xml, true);
           if (success) {
             Ardublockly.renderContent();
             Ardublockly.sketchNameSet(loadable.title);
@@ -392,7 +393,7 @@ Ardublockly.loadUserXmlFile = function() {
 
     var reader = new FileReader();
     reader.onload = function() {
-      var success = Ardublockly.replaceBlocksfromXml(reader.result);
+      var success = Ardublockly.replaceBlocksfromXml(reader.result, true);
       if (success) {
         Ardublockly.renderContent();
         Ardublockly.sketchNameSet(filename);

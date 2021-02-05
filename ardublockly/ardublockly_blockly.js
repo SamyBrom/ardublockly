@@ -179,14 +179,16 @@ Ardublockly.loadXmlBlockFile = function(xmlFile, cbSuccess, cbError) {
  * @param {!string} blocksXml String of XML code for the blocks.
  * @return {!boolean} Indicates if the XML into blocks parse was successful.
  */
-Ardublockly.replaceBlocksfromXml = function(blocksXml) {
+Ardublockly.replaceBlocksfromXml = function(blocksXml, load) {
+  console.log('replaceBlocksfromXml' + load)
   var xmlDom = null;
   try {
     xmlDom = Blockly.Xml.textToDom(blocksXml);
   } catch (e) {
     return false;
   }
-  Ardublockly.workspace.clear();
+  console.log('replaceBlocksfromXml load: ' + load)
+  Ardublockly.workspace.clear(load);
   var sucess = false;
   if (xmlDom) {
     sucess = Ardublockly.loadBlocksfromXmlDom(xmlDom);

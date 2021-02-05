@@ -170,7 +170,7 @@ Blockly.Workspace.prototype.getAllBlocks = function() {
 /**
  * Dispose of all blocks in workspace.
  */
-Blockly.Workspace.prototype.clear = function() {
+Blockly.Workspace.prototype.clear = function(load) {
   var existingGroup = Blockly.Events.getGroup();
   if (!existingGroup) {
     Blockly.Events.setGroup(true);
@@ -181,9 +181,11 @@ Blockly.Workspace.prototype.clear = function() {
   if (!existingGroup) {
     Blockly.Events.setGroup(false);
   }
-  var newBlock = Ardublockly.workspace.newBlock("arduino_functions")
-  newBlock.initSvg();
-  newBlock.render();
+  if (!load) {
+    var newBlock = Ardublockly.workspace.newBlock("arduino_functions")
+    newBlock.initSvg();
+    newBlock.render();
+  }
 };
 
 /**
