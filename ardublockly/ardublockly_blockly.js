@@ -130,6 +130,9 @@ Ardublockly.screenshot = function () {
   var ctx = canvas.getContext("2d");
   var xml = new XMLSerializer().serializeToString(ws);
   xml = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="' + bbox.width + '" height="' + bbox.height + '" viewBox="' + bbox.x + ' ' + bbox.y + ' ' + bbox.width + ' ' + bbox.height + '"><rect width="100%" height="100%" fill="white"></rect>' + xml + '</svg>';
+  // console.log('screenshot xml')
+  // console.log(xml)
+  // document.getElementById("svg_test").innerHTML = xml;
   var img = new Image();
   img.setAttribute("src", 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(xml))));
   img.onload = function () {
