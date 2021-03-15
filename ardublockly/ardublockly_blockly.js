@@ -128,6 +128,10 @@ Ardublockly.screenshot = function () {
   canvas.width = Math.ceil(bbox.width + 10);
   canvas.height = Math.ceil(bbox.height + 10);
   var ctx = canvas.getContext("2d");
+  // ctx.globalCompositeOperation = 'destination-over'
+  // Now draw!
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
   var xml = new XMLSerializer().serializeToString(ws);
   xml = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="' + bbox.width + '" height="' + bbox.height + '" viewBox="' + bbox.x + ' ' + bbox.y + ' ' + bbox.width + ' ' + bbox.height + '"><rect width="100%" height="100%" fill="white"></rect>' + xml + '</svg>';
   // console.log('screenshot xml')

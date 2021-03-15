@@ -686,12 +686,12 @@ Blockly.Blocks['read_temp'] = {
             .appendField("Read Temperature Pin")
             .appendField(new Blockly.FieldDropdown(
                 affAnaloguePins), 'PIN');
-        this.setOutput(true, Blockly.Types.BOOLEAN.output);
+        this.setOutput(true, Blockly.Types.NUMBER.output);
         // this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
     },
     /** @return {!string} The type of return value for the block, an integer. */
     getBlockType: function () {
-        return Blockly.Types.BOOLEAN;
+        return Blockly.Types.NUMBER;
     },
     /**
      * Updates the content of the the pin related fields.
@@ -722,12 +722,12 @@ Blockly.Blocks['read_temp_starter'] = {
             .appendField("Read Temperature Pin")
             .appendField(new Blockly.FieldDropdown(
                 affAnaloguePinsStarter), 'PIN');
-        this.setOutput(true, Blockly.Types.BOOLEAN.output);
+        this.setOutput(true, Blockly.Types.NUMBER.output);
         // this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
     },
     /** @return {!string} The type of return value for the block, an integer. */
     getBlockType: function () {
-        return Blockly.Types.BOOLEAN;
+        return Blockly.Types.NUMBER;
     },
     /**
      * Updates the content of the the pin related fields.
@@ -758,12 +758,12 @@ Blockly.Blocks['read_light'] = {
             .appendField("Read Light Intensity Pin")
             .appendField(new Blockly.FieldDropdown(
                 affAnaloguePins), 'PIN');
-        this.setOutput(true, Blockly.Types.BOOLEAN.output);
+        this.setOutput(true, Blockly.Types.NUMBER.output);
         // this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
     },
     /** @return {!string} The type of return value for the block, an integer. */
     getBlockType: function () {
-        return Blockly.Types.BOOLEAN;
+        return Blockly.Types.NUMBER;
     },
     /**
      * Updates the content of the the pin related fields.
@@ -794,12 +794,12 @@ Blockly.Blocks['read_light_starter'] = {
             .appendField("Read Light Intensity Pin")
             .appendField(new Blockly.FieldDropdown(
                 affAnaloguePinsStarter), 'PIN');
-        this.setOutput(true, Blockly.Types.BOOLEAN.output);
+        this.setOutput(true, Blockly.Types.NUMBER.output);
         // this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
     },
     /** @return {!string} The type of return value for the block, an integer. */
     getBlockType: function () {
-        return Blockly.Types.BOOLEAN;
+        return Blockly.Types.NUMBER;
     },
     /**
      * Updates the content of the the pin related fields.

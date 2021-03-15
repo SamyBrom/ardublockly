@@ -198,7 +198,7 @@ Blockly.Blocks['variables_set_text'] = {
       ],
       "previousStatement": null,
       "nextStatement": null,
-      "colour": 230,
+      "colour": 75,
       "tooltip": Blockly.Msg.VARIABLES_SET_TOOLTIP,
       "helpUrl": Blockly.Msg.VARIABLES_SET_HELPURL
     });
@@ -238,7 +238,7 @@ Blockly.Blocks['variables_set_bool'] = {
       ],
       "previousStatement": null,
       "nextStatement": null,
-      "colour": 130,
+      "colour": 290,
       "tooltip": Blockly.Msg.VARIABLES_SET_TOOLTIP,
       "helpUrl": Blockly.Msg.VARIABLES_SET_HELPURL
     });

@@ -173,18 +173,20 @@ Blockly.Workspace.prototype.getAllBlocks = function() {
 Blockly.Workspace.prototype.clear = function(load) {
   var existingGroup = Blockly.Events.getGroup();
   if (!existingGroup) {
+    console.log('set group true')
     Blockly.Events.setGroup(true);
   }
   while (this.topBlocks_.length) {
     this.topBlocks_[0].dispose();
   }
   if (!existingGroup) {
+    console.log('set group false')
     Blockly.Events.setGroup(false);
-  }
-  if (!load) {
-    var newBlock = Ardublockly.workspace.newBlock("arduino_functions")
-    newBlock.initSvg();
-    newBlock.render();
+    if (!load) {
+      var newBlock = Ardublockly.workspace.newBlock("arduino_functions")
+      newBlock.initSvg();
+      newBlock.render();
+    }
   }
 };
 
