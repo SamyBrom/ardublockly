@@ -382,7 +382,7 @@ Blockly.Arduino.getArduinoType_ = function(typeBlockly) {
     case Blockly.Types.CHARACTER.typeId:
       return 'char';
     case Blockly.Types.BOOLEAN.typeId:
-      return 'boolean';
+      return 'Boolean';
     case Blockly.Types.NULL.typeId:
       return 'void';
     case Blockly.Types.UNDEF.typeId:
